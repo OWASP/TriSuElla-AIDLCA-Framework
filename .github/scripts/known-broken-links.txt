@@ -1,6 +1,3 @@
 # Known documentation gaps. This list may only shrink (check_links.py fails on stale entries).
-# The prompt library documents a "build" category (B-01..B-06, 28+ prompts total) but the file does not exist;
-# only 22 prompts in 4 categories are present. Create framework/guides/prompts/build/secure-code-generation.md
-# and delete these two lines.
-framework/rules/FULL_README.md -> prompts/build/secure-code-generation.md
-framework/guides/prompts/README.md -> build/secure-code-generation.md
+# All previous known gaps (prompts/build/secure-code-generation.md) have been resolved.
+

@@ -416,7 +416,7 @@ Ready-to-use prompts for every stage of the TRISUELLA-AIDLCA workflow. Copy, fil
 | File | Prompts |
 |---|---|
 | [`prompts/planning/requirements-and-threat-model.md`](../guides/prompts/planning/requirements-and-threat-model.md) | Project kickoff, requirements deep dive, STRIDE threat model, user stories with security ACs, architecture security review |
-| [`prompts/build/secure-code-generation.md`](prompts/build/secure-code-generation.md) | Secure API endpoint, security code review, secure Dockerfile, secure DB schema, refactor for security, auth implementation |
+| [`prompts/build/secure-code-generation.md`](../guides/prompts/build/secure-code-generation.md) | Secure API endpoint, security code review, secure Dockerfile, secure DB schema, refactor for security, auth implementation |
 | [`prompts/test/security-testing.md`](../guides/prompts/test/security-testing.md) | API security tests, prompt injection suite, dependency scan setup, secret scan setup, AI model evaluation, infra security checklist |
 | [`prompts/ai-agents/ai-agent-security-prompts.md`](../guides/prompts/ai-agents/ai-agent-security-prompts.md) | LLM feature design, multi-agent system design, RAG security, LLM output validation, prompt template review, MCP server review |
 | [`prompts/compliance/compliance-prompts.md`](../guides/prompts/compliance/compliance-prompts.md) | GDPR checklist, DPDPA compliance check, HIPAA gap assessment, PCI-DSS scoping, data subject rights workflow |

@@ -19,8 +19,9 @@ Desktop.ini
 # Node / JS (if applicable)
 node_modules/
 dist/
-build/
+/build/
 .npm/
+!framework/guides/prompts/build/
 
 # Python
 __pycache__/

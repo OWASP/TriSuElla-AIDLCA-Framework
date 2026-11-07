@@ -5,6 +5,7 @@
 [![TriSuElla Gate](https://github.com/OWASP/TriSuElla-AIDLCA-Framework/actions/workflows/trisuella-gate.yml/badge.svg)](https://github.com/OWASP/TriSuElla-AIDLCA-Framework/actions/workflows/trisuella-gate.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 ![Version 3.4.0](https://img.shields.io/badge/version-3.4.0-informational.svg)
+[![OWASP Project](https://img.shields.io/badge/OWASP-Project%20Page-000000.svg?logo=owasp&logoColor=white)](https://owasp.org/projects/trisuella-aidlca-framework)
 
 ```
 Trust the component → Verify it → Control its authority → Observe its behavior → Continuously validate the outcome
@@ -51,4 +52,4 @@ git clone https://github.com/OWASP/TriSuElla-AIDLCA-Framework.git && cd TriSuEll
 
 ## 👤 Author
 
-**Author & Framework Architect:** Bhaskar Puppala (PATEL) · [LinkedIn](https://www.linkedin.com/in/bhaskerkpatel/) · OWASP TriSuElla Working Group
+**Author & Framework Architect:** Bhaskar Puppala (PATEL) · [LinkedIn](https://www.linkedin.com/in/bhaskerkpatel/) · [OWASP Project](https://owasp.org/projects/trisuella-aidlca-framework) · OWASP TriSuElla Working Group
