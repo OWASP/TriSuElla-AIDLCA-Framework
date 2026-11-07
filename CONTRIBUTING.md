@@ -27,8 +27,17 @@ Signed-off-by: Jane Doe <jane.doe@example.com>
 This repository hosts the official open-source upstream core. The author, **Bhaskar Puppala (PATEL)**, and authorized entities maintain separate, proprietary commercial distributions containing advanced enterprise features, UI components, and custom orchestration wrappers under an *All Rights Reserved* structure. 
 * Contributing code here **does not** grant you rights or ownership over separate commercial variations of this platform.
 * Upstream bug fixes or features contributed here may be merged into the commercial engine to ensure framework synchronization.
+* See also [COMMERCIAL.md](COMMERCIAL.md) and [TRADEMARKS.md](TRADEMARKS.md).
 
 ---
+
+## 🧭 Where does my change go?
+
+| Your change | Folder | Also do |
+|---|---|---|
+| New or edited rule, architecture, guide, prompt | `framework/` | If it adds or renames a rule ID, run `./solution/cli/trisu map --write` |
+| Scanner, CLI, template, agent, UI | `solution/` | Add a fixture and a test in `solution/cli/tests/` |
+| Executable code of any kind | `solution/` only | `framework/` must stay documents (a test enforces this) |
 
 ## 🛠️ Code of Conduct & Contribution Flow
 
@@ -44,7 +53,7 @@ Your code must strictly align with the platform's core infrastructure metrics:
 
 ### Step 3: Branching & Testing
 1. Fork the repository and create your branch from `main`: `git checkout -b feature/my-amazing-rule`.
-2. Add automated unit tests verifying both **positive** (compliance passed) and **negative** (invariant violated) conditions.
+2. Add automated unit tests verifying both **positive** (compliance passed) and **negative** (invariant violated) conditions. Run them with `python -m unittest discover -s solution/cli/tests -v`.
 3. Run local security linter checks to ensure no vulnerabilities are introduced.
 
 ### Step 4: Submit a Clean PR

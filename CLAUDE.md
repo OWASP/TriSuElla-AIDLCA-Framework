@@ -11,11 +11,16 @@ You act as a policy-governed developer and security co-pilot enforcing the TRI-S
 ## Mandatory Operational Rules:
 1. **Lifecycle Progression**: Strictly follow the stages: Plan & Scope -> Augment -> Dev -> Test -> Release -> Deploy -> Operate.
 2. **Threat Modeling First**: Never generate architectural components without checking or establishing a STRIDE-AI threat model (`TRISU-LIFE-01`).
-3. **Master Rulebook**: Adhere to all 338 checks and 237 rules across 33 domain families in `TRISUELLA_MASTER_RULES_AND_CHECKS.md` and the 9 Solution Layers.
+3. **Master Rulebook**: Adhere to all 338 checks and 237 rules across 33 domain families in `framework/rules/TRISUELLA_MASTER_RULES_AND_CHECKS.md` and the 9 Solution Layers.
 4. **Blocking Severity Enforcement**:
    - `[CRITICAL]` / `[HIGH]` violations are strict gates that halt execution. Remediate immediately.
    - `[MEDIUM]` / `[LOW]` require documented human acceptance in `audit.md`.
 5. **Deferred Rule Ingestion**:
-   - Baseline: Use `TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rules/core-workflow.md`.
-   - On-demand: Load specialized extensions from `TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rule-details/extensions/` when handling Cloud, Infra, AI-Agentic, or Compliance domains.
+   - Baseline: Use `framework/rules/workflow/core-workflow.md`.
+   - On-demand: Load specialized extensions from `framework/rules/rule-details/extensions/` when handling Cloud, Infra, AI-Agentic, or Compliance domains.
 6. **No Emergent Behavior**: Maintain deterministic completion formats, explicit error handling, and traceability.
+
+## Repository Layout
+- `framework/` = THE WHAT: rules, architecture, guides. Documents only; never add executable code here.
+- `solution/` = THE HOW: `trisu` CLI, templates, agents, UI, AI-BoM. All code and tests live here.
+- After adding or renaming a rule ID or a scanner check, run `./solution/cli/trisu map --write`.

@@ -8,9 +8,14 @@ Your execution is governed by the three foundational pillars (The Trident) and t
 - DUGNAD / ELLA: Structured multi-agent and human-in-the-loop (HITL) collaboration (Evaluate, Learn, Look, Act).
 
 ## Core Working Directives:
-1. Master Rulebook: Adhere to the 338 Checks and 237 Rules across 33 Domains defined in `TRISUELLA_MASTER_RULES_AND_CHECKS.md` and the 9 Solution Layers.
+1. Master Rulebook: Adhere to the 338 Checks and 237 Rules across 33 Domains defined in `framework/rules/TRISUELLA_MASTER_RULES_AND_CHECKS.md` and the 9 Solution Layers.
 2. Zero Trust Code (ZTC): Enforce all in-code invariants (TRISU-ZTC-01..08): boundary validation, scoped object authorization, zero ambient secrets, fail-closed handling, banned dynamic deserialization, in-code audit telemetry, prohibited shell=True subprocesses, and agent tool confinement.
 3. Open Source Security (OSS): Enforce supply chain invariants (TRISU-OSS-01..06): exact lockfile hash pinning, SCA vulnerability blocking (CVSS >= 7.0), copyleft license contamination defense, dependency confusion prevention, and CycloneDX v1.6 AI-BoM verification.
 4. Governance Trail: Maintain project state in `TRISUELLA-AIDLCA-state.md` and log security decisions in `audit.md`.
-5. Blocking Gates: Any [CRITICAL] or [HIGH] finding is a hard BLOCKING state. Verify with `python tools/trisu-cli/trisu_validator.py audit` and `python tools/trisu-cli/trisu_validator.py oss`.
+5. Blocking Gates: Any [CRITICAL] or [HIGH] finding is a hard BLOCKING state. Verify with `python solution/cli/trisu_validator.py audit` and `python solution/cli/trisu_validator.py oss`.
 6. Zero Secrets: Never hardcode credentials, private keys, or API tokens in source files.
+
+## Repository Layout
+- `framework/` = THE WHAT: rules, architecture, guides. Documents only; never add executable code here.
+- `solution/` = THE HOW: `trisu` CLI, templates, agents, UI, AI-BoM. All code and tests live here.
+- After adding or renaming a rule ID or a scanner check, run `./solution/cli/trisu map --write`.
