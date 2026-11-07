@@ -20,7 +20,7 @@ Application Design focuses on:
 ## Step-by-Step Execution
 
 ### 1. Analyze Context
-- Read `TRISUELLA-AIDLCA-docs/inception/requirements/requirements.md` and `TRISUELLA-AIDLCA-docs/inception/user-stories/stories.md`
+- Read `framework/architecture/inception/requirements/requirements.md` and `framework/architecture/inception/user-stories/stories.md`
 - Identify key business capabilities and functional areas
 - Determine design scope and complexity
 
@@ -52,7 +52,7 @@ Application Design focuses on:
 - **Design Patterns** - Only if architectural style or pattern choice needs user input
 
 ### 5. Store Application Design Plan
-- Save as `TRISUELLA-AIDLCA-docs/inception/plans/application-design-plan.md`
+- Save as `framework/architecture/inception/plans/application-design-plan.md`
 - Include all [Answer]: tags for user input
 - Ensure plan covers all design aspects
 
@@ -86,27 +86,27 @@ If the analysis in step 8 reveals ANY ambiguous answers, you MUST:
 
 ### 10. Generate Application Design Artifacts
 - Execute the approved plan to generate design artifacts
-- Create `TRISUELLA-AIDLCA-docs/inception/application-design/components.md` with:
+- Create `framework/architecture/inception/application-design/components.md` with:
   - Component name and purpose
   - Component responsibilities
   - Component interfaces
-- Create `TRISUELLA-AIDLCA-docs/inception/application-design/component-methods.md` with:
+- Create `framework/architecture/inception/application-design/component-methods.md` with:
   - Method signatures for each component
   - High-level purpose of each method
   - Input/output types
   - Note: Detailed business rules will be defined in Functional Design (per-unit, CONSTRUCTION phase)
-- Create `TRISUELLA-AIDLCA-docs/inception/application-design/services.md` with:
+- Create `framework/architecture/inception/application-design/services.md` with:
   - Service definitions
   - Service responsibilities
   - Service interactions and orchestration
-- Create `TRISUELLA-AIDLCA-docs/inception/application-design/component-dependency.md` with:
+- Create `framework/architecture/inception/application-design/component-dependency.md` with:
   - Dependency matrix showing relationships
   - Communication patterns between components
   - Data flow diagrams
-- Create `TRISUELLA-AIDLCA-docs/inception/application-design/application-design.md` that consolidates the multiple design docs created above in a single doc.
+- Create `framework/architecture/inception/application-design/application-design.md` that consolidates the multiple design docs created above in a single doc.
 
 ### 11. Log Approval
-- Log approval prompt with timestamp in `TRISUELLA-AIDLCA-docs/audit.md`
+- Log approval prompt with timestamp in `framework/architecture/audit.md`
 - Include complete approval prompt text
 - Use ISO 8601 timestamp format
 
@@ -118,7 +118,7 @@ If the analysis in step 8 reveals ANY ambiguous answers, you MUST:
 [AI-generated summary of application design artifacts created in bullet points]
 
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
-> Please examine the application design artifacts at: `TRISUELLA-AIDLCA-docs/inception/application-design/`
+> Please examine the application design artifacts at: `framework/architecture/inception/application-design/`
 
 > **🚀 <u>**WHAT'S NEXT?**</u>**
 >
@@ -136,11 +136,11 @@ If the analysis in step 8 reveals ANY ambiguous answers, you MUST:
 - If user requests changes, update the design and repeat the approval process
 
 ### 14. Record Approval Response
-- Log the user's approval response with timestamp in `TRISUELLA-AIDLCA-docs/audit.md`
+- Log the user's approval response with timestamp in `framework/architecture/audit.md`
 - Include the exact user response text
 - Mark the approval status clearly
 
 ### 15. Update Progress
-- Mark Application Design stage complete in `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md`
+- Mark Application Design stage complete in `framework/architecture/TRISUELLA-AIDLCA-state.md`
 - Update the "Current Status" section
 - Prepare for transition to next stage

@@ -24,10 +24,10 @@ This stage generates code for each unit of work through two integrated parts:
 - [ ] Validate unit is ready for code generation
 
 ## Step 2: Create Detailed Unit Code Generation Plan
-- [ ] Read workspace root and project type from `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md`
+- [ ] Read workspace root and project type from `framework/architecture/TRISUELLA-AIDLCA-state.md`
 - [ ] Determine code location (see Critical Rules for structure patterns)
 - [ ] **Brownfield only**: Review reverse engineering code-structure.md for existing files to modify
-- [ ] Document exact paths (never TRISUELLA-AIDLCA-docs/)
+- [ ] Document exact paths (never framework/architecture/)
 - [ ] Create explicit steps for unit generation:
   - Project Structure Setup (greenfield only)
   - Business Logic Generation
@@ -58,7 +58,7 @@ This stage generates code for each unit of work through two integrated parts:
   - Service boundaries and responsibilities
 
 ## Step 4: Create Unit Plan Document
-- [ ] Save complete plan as `TRISUELLA-AIDLCA-docs/construction/plans/{unit-name}-code-generation-plan.md`
+- [ ] Save complete plan as `framework/architecture/construction/plans/{unit-name}-code-generation-plan.md`
 - [ ] Include step numbering (Step 1, Step 2, etc.)
 - [ ] Include unit context and dependencies
 - [ ] Include story traceability
@@ -72,7 +72,7 @@ This stage generates code for each unit of work through two integrated parts:
 - [ ] Note total number of steps and estimated scope
 
 ## Step 6: Log Approval Prompt
-- [ ] Before asking for approval, log the prompt with timestamp in `TRISUELLA-AIDLCA-docs/audit.md`
+- [ ] Before asking for approval, log the prompt with timestamp in `framework/architecture/audit.md`
 - [ ] Include reference to the complete unit code generation plan
 - [ ] Use ISO 8601 timestamp format
 
@@ -82,7 +82,7 @@ This stage generates code for each unit of work through two integrated parts:
 - [ ] If user requests changes, update the plan and repeat approval process
 
 ## Step 8: Record Approval Response
-- [ ] Log the user's approval response with timestamp in `TRISUELLA-AIDLCA-docs/audit.md`
+- [ ] Log the user's approval response with timestamp in `framework/architecture/audit.md`
 - [ ] Include the exact user response text
 - [ ] Mark the approval status clearly
 
@@ -96,19 +96,19 @@ This stage generates code for each unit of work through two integrated parts:
 # PART 2: GENERATION
 
 ## Step 10: Load Unit Code Generation Plan
-- [ ] Read the complete plan from `TRISUELLA-AIDLCA-docs/construction/plans/{unit-name}-code-generation-plan.md`
+- [ ] Read the complete plan from `framework/architecture/construction/plans/{unit-name}-code-generation-plan.md`
 - [ ] Identify the next uncompleted step (first [ ] checkbox)
 - [ ] Load the context for that step (unit, dependencies, stories)
 
 ## Step 11: Execute Current Step
-- [ ] Verify target directory from plan (never TRISUELLA-AIDLCA-docs/)
+- [ ] Verify target directory from plan (never framework/architecture/)
 - [ ] **Brownfield only**: Check if target file exists
 - [ ] Generate exactly what the current step describes:
   - **If file exists**: Modify it in-place (never create `ClassName_modified.java`, `ClassName_new.java`, etc.)
   - **If file doesn't exist**: Create new file
 - [ ] Write to correct locations:
   - **Application Code**: Workspace root per project structure
-  - **Documentation**: `TRISUELLA-AIDLCA-docs/construction/{unit-name}/code/` (markdown only)
+  - **Documentation**: `framework/architecture/construction/{unit-name}/code/` (markdown only)
   - **Build/Config Files**: Workspace root
 - [ ] Follow unit story requirements
 - [ ] Respect dependencies and interfaces
@@ -116,7 +116,7 @@ This stage generates code for each unit of work through two integrated parts:
 ## Step 12: Update Progress
 - [ ] Mark the completed step as [x] in the unit code generation plan
 - [ ] Mark associated unit stories as [x] when their generation is finished
-- [ ] Update `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md` current status
+- [ ] Update `framework/architecture/TRISUELLA-AIDLCA-state.md` current status
 - [ ] **Brownfield only**: Verify no duplicate files created (e.g., no `ClassName_modified.java` alongside `ClassName.java`)
 - [ ] Save all generated artifacts
 
@@ -143,7 +143,7 @@ This stage generates code for each unit of work through two integrated parts:
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
 > Please examine the generated code at:
 > - **Application Code**: `[actual-workspace-path]`
-> - **Documentation**: `TRISUELLA-AIDLCA-docs/construction/[unit-name]/code/`
+> - **Documentation**: `framework/architecture/construction/[unit-name]/code/`
 
 
 
@@ -172,8 +172,8 @@ This stage generates code for each unit of work through two integrated parts:
 ## Critical Rules
 
 ### Code Location Rules
-- **Application code**: Workspace root only (NEVER TRISUELLA-AIDLCA-docs/)
-- **Documentation**: TRISUELLA-AIDLCA-docs/ only (markdown summaries)
+- **Application code**: Workspace root only (NEVER framework/architecture/)
+- **Documentation**: framework/architecture/ only (markdown summaries)
 - **Read workspace root** from TRISUELLA-AIDLCA-state.md before generating code
 
 **Structure patterns by project type**:

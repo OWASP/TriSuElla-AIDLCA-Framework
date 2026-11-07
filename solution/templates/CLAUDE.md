@@ -16,6 +16,6 @@ You act as a policy-governed developer and security co-pilot enforcing the TRI-S
    - `[CRITICAL]` / `[HIGH]` violations are strict gates that halt execution. Remediate immediately.
    - `[MEDIUM]` / `[LOW]` require documented human acceptance in `audit.md`.
 5. **Deferred Rule Ingestion**:
-   - Baseline: Use `TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rules/core-workflow.md`.
-   - On-demand: Load specialized extensions from `TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rule-details/extensions/` when handling Cloud, Infra, AI-Agentic, or Compliance domains.
+   - Baseline: Use `framework/rules/workflow/core-workflow.md`.
+   - On-demand: Load specialized extensions from `framework/rules/rule-details/extensions/` when handling Cloud, Infra, AI-Agentic, or Compliance domains.
 6. **No Emergent Behavior**: Maintain deterministic completion formats, explicit error handling, and traceability.

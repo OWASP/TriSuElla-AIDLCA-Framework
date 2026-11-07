@@ -2,7 +2,7 @@
 
 > **TRISUELLA-AIDLCA SDF** — Security-first, AI-native. From idea to production.
 
-Use this template to document architectural decisions made during the TRISUELLA-AIDLCA workflow. Copy this file, rename it `adr-NNN-short-title.md` (e.g., `adr-001-event-bus.md`), fill in the fields, and commit it to `TRISUELLA-AIDLCA-docs/architecture/adr/` in your project.
+Use this template to document architectural decisions made during the TRISUELLA-AIDLCA workflow. Copy this file, rename it `adr-NNN-short-title.md` (e.g., `adr-001-event-bus.md`), fill in the fields, and commit it to `framework/architecture/architecture/adr/` in your project.
 
 ADRs capture the context, decision, and consequences of significant design choices so that future developers — human and AI — understand not just what was decided, but why, and what was rejected.
 

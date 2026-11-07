@@ -9,7 +9,7 @@ This guide explains how to publish the **TriSuElla-AIDLCA-Framework** Wiki to yo
 GitHub manages repository wikis as independent Git repositories with the `.wiki.git` suffix.
 
 ### Step 1: Enable Wiki on GitHub (If not already enabled)
-1. Go to your GitHub repository (e.g., `https://github.com/OWASP/OWASP-TriSuElla-AIDLCA-Framework` or `https://github.com/thundel/TriSuElla-AIDLCA-Framework`).
+1. Go to your GitHub repository (e.g., `https://github.com/OWASP/TriSuElla-AIDLCA-Framework` or `https://github.com/thundel/TriSuElla-AIDLCA-Framework`).
 2. Click **Settings** → Under **Features**, ensure the **Wikis** checkbox is checked.
 3. Click the **Wiki** tab at the top of your repository and click **Create the first page** (you can type anything and click **Save page** to initialize the wiki Git repository).
 
@@ -17,7 +17,7 @@ GitHub manages repository wikis as independent Git repositories with the `.wiki.
 In your terminal, clone the wiki repository into a temporary folder:
 ```bash
 # For OWASP repository:
-git clone https://github.com/OWASP/OWASP-TriSuElla-AIDLCA-Framework.wiki.git trisuella-wiki
+git clone https://github.com/OWASP/TriSuElla-AIDLCA-Framework.wiki.git trisuella-wiki
 
 # Or for personal repository:
 git clone https://github.com/thundel/TriSuElla-AIDLCA-Framework.wiki.git trisuella-wiki

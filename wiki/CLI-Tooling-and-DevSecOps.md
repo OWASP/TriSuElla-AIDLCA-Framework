@@ -1,7 +1,7 @@
 # 🛠️ CLI Tooling & DevSecOps Playbook
 
 > **Platform Version**: 3.4.0 | **CLI Binary**: `trisu` | **Zero Dependencies**: Pure Python 3.9+ Standard Library  
-> **Repository**: [OWASP/OWASP-TriSuElla-AIDLCA-Framework](https://github.com/OWASP/OWASP-TriSuElla-AIDLCA-Framework)
+> **Repository**: [OWASP/TriSuElla-AIDLCA-Framework](https://github.com/OWASP/TriSuElla-AIDLCA-Framework)
 
 ---
 
@@ -10,9 +10,9 @@
 The TriSuElla platform includes an enterprise CLI gatekeeper (`trisu`) designed to run anywhere—from local developer laptops to air-gapped CI/CD build agents—without installing external third-party packages or runtime managers.
 
 ### Launchers & Invocation:
-- **Linux / macOS / Git Bash**: `./trisu <command> [options]`
-- **Windows (CMD / PowerShell)**: `.\trisu.cmd <command> [options]`
-- **Python Global Invocation**: `python tools/trisu-cli/trisu_validator.py <command>` or via editable install: `pip install -e tools/trisu-cli`
+- **Linux / macOS / Git Bash**: `./solution/cli/trisu <command> [options]`
+- **Windows (CMD / PowerShell)**: `.\solution\cli\trisu.cmd <command> [options]`
+- **Python Global Invocation**: `python solution/cli/trisu_validator.py <command>` or via editable install: `pip install -e solution/cli`
 
 ---
 
@@ -135,16 +135,16 @@ jobs:
           python-version: '3.11'
 
       - name: Verify Governance Templates
-        run: python tools/trisu-cli/trisu_validator.py check
+        run: python solution/cli/trisu_validator.py check
 
       - name: Execute Static Code & Zero Trust AST Audit
-        run: python tools/trisu-cli/trisu_validator.py audit --sarif trisuella-audit.sarif
+        run: python solution/cli/trisu_validator.py audit --sarif trisuella-audit.sarif
 
       - name: Audit Open Source Dependencies & AI-BoM
-        run: python tools/trisu-cli/trisu_validator.py oss --sarif trisuella-oss.sarif
+        run: python solution/cli/trisu_validator.py oss --sarif trisuella-oss.sarif
 
       - name: Audit Shadow AI & Model Reconciliation
-        run: python tools/trisu-cli/trisu_validator.py shadow --sarif trisuella-shadow.sarif
+        run: python solution/cli/trisu_validator.py shadow --sarif trisuella-shadow.sarif
 
       - name: Upload Security Findings to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
@@ -167,7 +167,7 @@ repos:
     hooks:
       - id: trisu-audit
         name: TriSuElla Zero Trust Code Audit
-        entry: python tools/trisu-cli/trisu_validator.py audit
+        entry: python solution/cli/trisu_validator.py audit
         language: system
         pass_filenames: false
 ```

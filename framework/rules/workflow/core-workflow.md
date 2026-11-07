@@ -46,7 +46,7 @@ All subsequent rule detail file references (e.g., `common/process-overview.md`, 
 - Non-compliance with any applicable enabled extension rule is a **blocking finding** — do NOT present stage completion until resolved
 - When presenting stage completion, include a summary of extension rule compliance (compliant/non-compliant/N/A per rule, with brief rationale for N/A determinations)
 
-**Conditional Enforcement**: Extensions may be conditionally enabled/disabled. See `inception/requirements-analysis.md` for the opt-in mechanism. Before enforcing any extension at ANY stage, check its `Enabled` status in `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md` under `## Extension Configuration`. Skip disabled extensions and log the skip in audit.md. Default to enforced if no configuration exists. 
+**Conditional Enforcement**: Extensions may be conditionally enabled/disabled. See `inception/requirements-analysis.md` for the opt-in mechanism. Before enforcing any extension at ANY stage, check its `Enabled` status in `framework/architecture/TRISUELLA-AIDLCA-state.md` under `## Extension Configuration`. Skip disabled extensions and log the skip in audit.md. Default to enforced if no configuration exists. 
 
 ## MANDATORY: Content Validation
 **CRITICAL**: Before creating ANY file, you MUST validate content according to `common/content-validation.md` rules:
@@ -607,7 +607,7 @@ All subsequent rule detail file references (e.g., `common/process-overview.md`, 
 <WORKSPACE-ROOT>/                   # ⚠️ APPLICATION CODE HERE
 ├── [project-specific structure]    # Varies by project (see code-generation.md)
 │
-├── TRISUELLA-AIDLCA-docs/                     # 📄 DOCUMENTATION ONLY
+├── framework/architecture/                     # 📄 DOCUMENTATION ONLY
 │   ├── inception/                  # 🔵 INCEPTION PHASE
 │   │   ├── plans/
 │   │   ├── reverse-engineering/    # Brownfield only
@@ -645,6 +645,6 @@ All subsequent rule detail file references (e.g., `common/process-overview.md`, 
 ```
 
 **CRITICAL RULE**:
-- Application code: Workspace root (NEVER in TRISUELLA-AIDLCA-docs/)
-- Documentation: TRISUELLA-AIDLCA-docs/ only
+- Application code: Workspace root (NEVER in framework/architecture/)
+- Documentation: framework/architecture/ only
 - Project structure: See code-generation.md for patterns by project type

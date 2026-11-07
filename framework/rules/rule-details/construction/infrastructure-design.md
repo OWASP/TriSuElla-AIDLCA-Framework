@@ -11,8 +11,8 @@ Map logical software components to actual infrastructure choices for deployment 
 ## Steps to Execute
 
 ### Step 1: Analyze Design Artifacts
-- Read functional design from `TRISUELLA-AIDLCA-docs/construction/{unit-name}/functional-design/`
-- Read NFR design from `TRISUELLA-AIDLCA-docs/construction/{unit-name}/nfr-design/` (if exists)
+- Read functional design from `framework/architecture/construction/{unit-name}/functional-design/`
+- Read NFR design from `framework/architecture/construction/{unit-name}/nfr-design/` (if exists)
 - Identify logical components needing infrastructure
 
 ### Step 2: Create Infrastructure Design Plan
@@ -38,7 +38,7 @@ Map logical software components to actual infrastructure choices for deployment 
 - **Secrets Management** - ALWAYS ask if a secrets manager service has been chosen and how secrets will be rotated
 
 ### Step 4: Store Plan
-- Save as `TRISUELLA-AIDLCA-docs/construction/plans/{unit-name}-infrastructure-design-plan.md`
+- Save as `framework/architecture/construction/plans/{unit-name}-infrastructure-design-plan.md`
 - Include all [Answer]: tags for user input
 
 ### Step 5: Collect and Analyze Answers
@@ -47,10 +47,10 @@ Map logical software components to actual infrastructure choices for deployment 
 - Add follow-up questions if needed
 
 ### Step 6: Generate Infrastructure Design Artifacts
-- Create `TRISUELLA-AIDLCA-docs/construction/{unit-name}/infrastructure-design/infrastructure-design.md`
-- Create `TRISUELLA-AIDLCA-docs/construction/{unit-name}/infrastructure-design/deployment-architecture.md`
-- Create `TRISUELLA-AIDLCA-docs/construction/{unit-name}/infrastructure-design/secrets-management-design.md` (MANDATORY for any unit using credentials, API keys, certificates, or sensitive configuration)
-- If shared infrastructure: Create `TRISUELLA-AIDLCA-docs/construction/shared-infrastructure.md`
+- Create `framework/architecture/construction/{unit-name}/infrastructure-design/infrastructure-design.md`
+- Create `framework/architecture/construction/{unit-name}/infrastructure-design/deployment-architecture.md`
+- Create `framework/architecture/construction/{unit-name}/infrastructure-design/secrets-management-design.md` (MANDATORY for any unit using credentials, API keys, certificates, or sensitive configuration)
+- If shared infrastructure: Create `framework/architecture/construction/shared-infrastructure.md`
 
 ### Mandatory: Secrets Management by Design
 
@@ -107,7 +107,7 @@ Every infrastructure design MUST include a secrets management strategy. The foll
 
 ```markdown
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
-> Please examine the infrastructure design at: `TRISUELLA-AIDLCA-docs/construction/[unit-name]/infrastructure-design/`
+> Please examine the infrastructure design at: `framework/architecture/construction/[unit-name]/infrastructure-design/`
 
 
 

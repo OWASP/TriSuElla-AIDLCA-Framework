@@ -26,25 +26,30 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Run Scanner Test Suite
+        run: |
+          python -m unittest discover -s solution/cli/tests -v
+
       - name: Verify Framework Artifacts & Templates
         run: |
-          python tools/trisu-cli/trisu_validator.py check
+          python solution/cli/trisu_validator.py check
 
       - name: Audit for Blocking [CRITICAL]/[HIGH] Findings & Generate SARIF
         run: |
-          python tools/trisu-cli/trisu_validator.py audit --sarif trisuella-audit.sarif
+          python solution/cli/trisu_validator.py audit --sarif trisuella-audit.sarif
 
       - name: Audit Open Source Security & Supply Chain (TRISU-OSS)
         run: |
-          python tools/trisu-cli/trisu_validator.py oss --sarif trisuella-oss.sarif
+          python solution/cli/trisu_validator.py oss --sarif trisuella-oss.sarif
 
-      - name: Verify Rules Integrity (237 TRISU-* Identifiers, 338 Checks)
+      - name: Verify Rulebook Parses & Enforcement Map Is Current
         run: |
-          python tools/trisu-cli/trisu_validator.py rules
+          python solution/cli/trisu_validator.py rules
+          python solution/cli/trisu_validator.py map --check
 
       - name: Generate CycloneDX AI v1.6 Bill of Materials (AI-BoM)
         run: |
-          python tools/trisu-cli/trisu_validator.py bom --output ai-bom.json
+          python solution/cli/trisu_validator.py bom --output ai-bom.generated.json
 
       - name: Upload Security SARIF Report to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
@@ -68,6 +73,6 @@ jobs:
         with:
           name: trisuella-v3-artifacts
           path: |
-            ai-bom.json
+            ai-bom.generated.json
             trisuella-audit.sarif
             trisuella-oss.sarif

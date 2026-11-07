@@ -54,7 +54,7 @@ The ideal setup uses both: this framework during AI-assisted development, plus a
 
 **Q: How do I start?**
 
-A: See [Usage-Guide.md](../../Usage-Guide.md) for the full guide. In brief: copy the contents of `TRISUELLA-AIDLCA-rules/core-workflow.md` into your AI tool's system prompt or custom instructions field, add any relevant extensions, and describe your project.
+A: See [Usage-Guide.md](../../../solution/docs/Usage-Guide.md) for the full guide. In brief: copy the contents of `framework/rules/workflow/core-workflow.md` into your AI tool's system prompt or custom instructions field, add any relevant extensions, and describe your project.
 
 ---
 

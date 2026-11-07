@@ -1,7 +1,7 @@
 # 🚀 Quickstart & Project Scaffolding Guide
 
 > **Platform Version**: 3.4.0 | **Zero External Dependencies**  
-> **Repository**: [OWASP/OWASP-TriSuElla-AIDLCA-Framework](https://github.com/OWASP/OWASP-TriSuElla-AIDLCA-Framework)
+> **Repository**: [OWASP/TriSuElla-AIDLCA-Framework](https://github.com/OWASP/TriSuElla-AIDLCA-Framework)
 
 ---
 
@@ -12,21 +12,21 @@ You can onboard any existing codebase or greenfield repository to the TriSuElla 
 ### Step 1: Clone or Copy the CLI Gatekeeper
 ```bash
 # Clone the repository
-git clone https://github.com/OWASP/OWASP-TriSuElla-AIDLCA-Framework.git
-cd OWASP-TriSuElla-AIDLCA-Framework
+git clone https://github.com/OWASP/TriSuElla-AIDLCA-Framework.git
+cd TriSuElla-AIDLCA-Framework
 
 # Or invoke the CLI directly using Python standard library
-python tools/trisu-cli/trisu_validator.py --help
+python solution/cli/trisu_validator.py --help
 ```
 
 ### Step 2: Initialize Governance in Your Target Project
 Scaffold all required configuration files, policy specifications, and developer templates directly into your project:
 ```bash
 # Linux / macOS
-./trisu init --target /path/to/your/project
+./solution/cli/trisu init --target /path/to/your/project
 
 # Windows (CMD / PowerShell)
-.\trisu.cmd init --target C:\path\to\your\project
+.\solution\cli\trisu.cmd init --target C:\path\to\your\project
 ```
 
 This generates:
@@ -81,19 +81,19 @@ Execute the zero-dependency verification suite locally before committing:
 
 ```bash
 # 1. Check all governance artifacts
-./trisu check
+./solution/cli/trisu check
 
 # 2. Run AST code security audit
-./trisu audit --sarif audit.sarif
+./solution/cli/trisu audit --sarif audit.sarif
 
 # 3. Detect any Shadow AI or unauthorized LLM endpoints
-./trisu shadow --sarif shadow.sarif
+./solution/cli/trisu shadow --sarif shadow.sarif
 
 # 4. Verify supply chain & hash-pinned dependencies
-./trisu oss --sarif oss.sarif
+./solution/cli/trisu oss --sarif oss.sarif
 
 # 5. Generate a fresh CycloneDX AI-BoM
-./trisu bom --output ai-bom.json
+./solution/cli/trisu bom --output ai-bom.json
 ```
 
 ---

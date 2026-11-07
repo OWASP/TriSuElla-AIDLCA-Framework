@@ -1,9 +1,9 @@
-# 🤖 TRISUELLA-AIDLCAa: Multi-Agent Autonomous Development & Governance System
+# 🤖 solution/agents: Multi-Agent Autonomous Development & Governance System
 > **Version**: 3.4.0 | **Status**: Institutionalized Architecture (CI-Verified) | **Consolidated Invariants**: 338 Checks | **Rules**: 237 | **Domain Families**: 33  
 > **Author**: [Bhaskar Puppala (PATEL)](https://www.linkedin.com/in/bhaskerkpatel/)  
 > **Pillars**: SISU, TILLIT, DUGNAD
 
-> **TRISUELLA-AIDLCAa** (AI-Driven Development Life Cycle Agents) is the automated multi-agent implementation of the TriSuElla framework. It translates the 338 governance rules and sequential lifecycle gates into a coordinated pipeline of specialized autonomous agents operating under a Zero-Trust orchestration fabric.
+> **solution/agents** (AI-Driven Development Life Cycle Agents) is the automated multi-agent implementation of the TriSuElla framework. It translates the 338 governance rules and sequential lifecycle gates into a coordinated pipeline of specialized autonomous agents operating under a Zero-Trust orchestration fabric.
 
 ---
 
@@ -24,11 +24,11 @@
 
 ## 🏛️ Architectural Overview
 
-While individual developers can use the TriSuElla rules as system prompts for single AI coding assistants (Cursor, Claude, Copilot), enterprise teams and autonomous software factories deploy **TRISUELLA-AIDLCAa** as an 8-stage agent pipeline:
+While individual developers can use the TriSuElla rules as system prompts for single AI coding assistants (Cursor, Claude, Copilot), enterprise teams and autonomous software factories deploy **solution/agents** as an 8-stage agent pipeline:
 
 ```mermaid
 graph TD
-    subgraph "TRISUELLA-AIDLCAa Orchestration Fabric (Zero Trust Bus)"
+    subgraph "solution/agents Orchestration Fabric (Zero Trust Bus)"
         P1[1. Planner Agent<br/>STRIDE & Scope] --> P2[2. Designer Agent<br/>NFR & Architecture]
         P2 --> P3[3. Builder Agent<br/>Secure Code Gen]
         P3 --> P4[4. Tester Agent<br/>PyRIT / Garak / SAST]
@@ -103,7 +103,7 @@ Under the **DUGNAD** pillar, no agent possesses unilateral authority to deploy A
 
 ---
 
-## 🚀 Getting Started with TRISUELLA-AIDLCAa
+## 🚀 Getting Started with solution/agents
 
 ### Prerequisites
 - Python 3.11+ or Node.js 20+
@@ -124,7 +124,7 @@ agents:
     threat_model_framework: "STRIDE-AI"
   builder:
     model: "claude-3-7-sonnet"
-    rules_path: "./TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rules/core-workflow.md"
+    rules_path: "./framework/rules/workflow/core-workflow.md"
   tester:
     tools: ["garak", "pyrit", "semgrep", "trufflehog"]
     blocking_severity: ["CRITICAL", "HIGH"]
@@ -138,7 +138,7 @@ agents:
 ---
 
 ## 📚 Architectural Standards & Invariants
-- 🔐 **Agentic Identity & Delegation**: See [TRISU-AIAM](../TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rule-details/extensions/security/zero-trust/agentic-iam.md) for RFC 8693 token exchange and SPIFFE/mTLS workload identity specifications.
-- 🔌 **Tool & MCP Sandboxing**: See [TRISU-MCP](../TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rule-details/extensions/security/ai-agentic/mcp-security.md) for runtime tool sandboxing and parameter sanitization.
-- 🛠️ **Automated Policy Gatekeeper**: See [Validator CLI (`trisu`)](../tools/trisu-cli/README.md) and [Usage Guide](../Usage-Guide.md) for turnkey runtime enforcement.
-- 📋 **Master Governance Reference**: Consult [TRISUELLA_MASTER_RULES_AND_CHECKS.md](../TRISUELLA_MASTER_RULES_AND_CHECKS.md) (338 Checks, 237 Rules across 33 Domains) and [CHARTER.md](../TRISUELLA-AIDLCA-Rules/CHARTER.md).
+- 🔐 **Agentic Identity & Delegation**: See [TRISU-AIAM](../../framework/rules/rule-details/extensions/security/zero-trust/agentic-iam.md) for RFC 8693 token exchange and SPIFFE/mTLS workload identity specifications.
+- 🔌 **Tool & MCP Sandboxing**: See [TRISU-MCP](../../framework/rules/rule-details/extensions/security/ai-agentic/mcp-security.md) for runtime tool sandboxing and parameter sanitization.
+- 🛠️ **Automated Policy Gatekeeper**: See [Validator CLI (`trisu`)](../cli/README.md) and [Usage Guide](../docs/Usage-Guide.md) for turnkey runtime enforcement.
+- 📋 **Master Governance Reference**: Consult [TRISUELLA_MASTER_RULES_AND_CHECKS.md](../../framework/rules/TRISUELLA_MASTER_RULES_AND_CHECKS.md) (338 Checks, 237 Rules across 33 Domains) and [CHARTER.md](../../framework/rules/CHARTER.md).

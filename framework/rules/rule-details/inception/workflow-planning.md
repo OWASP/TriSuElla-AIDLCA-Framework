@@ -221,7 +221,7 @@ linkStyle default stroke:#333,stroke-width:2px
 
 ## Step 7: Create Execution Plan Document
 
-Create `TRISUELLA-AIDLCA-docs/inception/plans/execution-plan.md`:
+Create `framework/architecture/inception/plans/execution-plan.md`:
 
 ```markdown
 # Execution Plan
@@ -343,7 +343,7 @@ flowchart TD
 
 ## Step 8: Initialize State Tracking
 
-Update `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md`:
+Update `framework/architecture/TRISUELLA-AIDLCA-state.md`:
 
 ```markdown
 # TRISUELLA-AIDLCA State Tracking
@@ -439,7 +439,7 @@ I recommend skipping [Y] stages:
 **Estimated Timeline**: [Duration]
 
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
-> Please examine the execution plan at: `TRISUELLA-AIDLCA-docs/inception/plans/execution-plan.md`
+> Please examine the execution plan at: `framework/architecture/inception/plans/execution-plan.md`
 
 > **🚀 <u>**WHAT'S NEXT?**</u>**
 >
@@ -459,7 +459,7 @@ I recommend skipping [Y] stages:
 
 ## Step 11: Log Interaction
 
-Log in `TRISUELLA-AIDLCA-docs/audit.md`:
+Log in `framework/architecture/audit.md`:
 
 ```markdown
 ## Workflow Planning - Approval

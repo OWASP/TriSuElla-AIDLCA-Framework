@@ -23,8 +23,8 @@ Design detailed business logic for the unit, technology-agnostic and focused pur
 ## Steps to Execute
 
 ### Step 1: Analyze Unit Context
-- Read unit definition from `TRISUELLA-AIDLCA-docs/inception/application-design/unit-of-work.md`
-- Read assigned stories from `TRISUELLA-AIDLCA-docs/inception/application-design/unit-of-work-story-map.md`
+- Read unit definition from `framework/architecture/inception/application-design/unit-of-work.md`
+- Read assigned stories from `framework/architecture/inception/application-design/unit-of-work-story-map.md`
 - Understand unit responsibilities and boundaries
 
 ### Step 2: Create Functional Design Plan
@@ -53,7 +53,7 @@ Design detailed business logic for the unit, technology-agnostic and focused pur
 - **Frontend Components** (if applicable) - Ask about UI component structure, user interactions, state management, and form handling
 
 ### Step 4: Store Plan
-- Save as `TRISUELLA-AIDLCA-docs/construction/plans/{unit-name}-functional-design-plan.md`
+- Save as `framework/architecture/construction/plans/{unit-name}-functional-design-plan.md`
 - Include all [Answer]: tags for user input
 
 ### Step 5: Collect and Analyze Answers
@@ -65,10 +65,10 @@ Design detailed business logic for the unit, technology-agnostic and focused pur
 - **Do not proceed until ALL ambiguities are resolved**
 
 ### Step 6: Generate Functional Design Artifacts
-- Create `TRISUELLA-AIDLCA-docs/construction/{unit-name}/functional-design/business-logic-model.md`
-- Create `TRISUELLA-AIDLCA-docs/construction/{unit-name}/functional-design/business-rules.md`
-- Create `TRISUELLA-AIDLCA-docs/construction/{unit-name}/functional-design/domain-entities.md`
-- If unit includes frontend/UI: Create `TRISUELLA-AIDLCA-docs/construction/{unit-name}/functional-design/frontend-components.md`
+- Create `framework/architecture/construction/{unit-name}/functional-design/business-logic-model.md`
+- Create `framework/architecture/construction/{unit-name}/functional-design/business-rules.md`
+- Create `framework/architecture/construction/{unit-name}/functional-design/domain-entities.md`
+- If unit includes frontend/UI: Create `framework/architecture/construction/{unit-name}/functional-design/frontend-components.md`
   - Component hierarchy and structure
   - Props and state definitions for each component
   - User interaction flows
@@ -94,7 +94,7 @@ Design detailed business logic for the unit, technology-agnostic and focused pur
 
 ```markdown
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
-> Please examine the functional design artifacts at: `TRISUELLA-AIDLCA-docs/construction/[unit-name]/functional-design/`
+> Please examine the functional design artifacts at: `framework/architecture/construction/[unit-name]/functional-design/`
 
 
 

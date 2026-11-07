@@ -63,7 +63,7 @@ The following 33 rule domains are fully integrated and enforced via master speci
 
 ### Phase 3: Zero Trust Code, Supply Chain & Turnkey Tooling (Completed - v3.0)
 - Enforced 8 Zero Trust Code (`TRISU-ZTC`) and 6 Open Source Security (`TRISU-OSS`) invariants.
-- Developed zero-dependency Python gatekeeper (`tools/trisu-cli`) with AST parser, secret scanner, and CycloneDX AI-BoM generator.
+- Developed zero-dependency Python gatekeeper (`solution/cli`) with AST parser, secret scanner, and CycloneDX AI-BoM generator.
 - Added native turnkey wrappers (`trisu.cmd`, `trisu`) and pip packaging (`pyproject.toml`).
 - Implemented automated GitHub Actions CI/CD gate with OASIS SARIF 2.1.0 Code Scanning upload.
 
@@ -87,7 +87,7 @@ The following 33 rule domains are fully integrated and enforced via master speci
 - Transformed TriSuElla into a comprehensive **Continuous Trust & Assurance Platform for Digital and AI Systems** across 9 structured solution layers.
 - Established the **TRI-SU-ELLA Engine Triad** (TRI: Trust, SU: Secure, ELLA: Evaluate-Learn-Look-Act) and operational formula: `TRUST → VERIFY → CONTROL → OBSERVE → VALIDATE`.
 - Codified Core Enterprise GRC rules (`TRISU-SOC2-01..04`, `TRISU-ISMS-01..04`), NIST AI RMF rules (`TRISU-AIRMF-01..06`), and Full-Spectrum AppSec rules (`TRISU-API-01..05`, `TRISU-MOB-01..03`, `TRISU-WEB-01..03`).
-- Produced comprehensive multi-standard crosswalk matrix and architecture blueprints in `TRISUELLA-AIDLCA-docs/`.
+- Produced comprehensive multi-standard crosswalk matrix and architecture blueprints in `framework/architecture/`.
 - Integrated `trisu matrix` CLI command into `trisu_validator.py`.
 - Expanded repository inventory to **338 Consolidated Checks**, **237 Unique Rules** across **33 Domains**.
 

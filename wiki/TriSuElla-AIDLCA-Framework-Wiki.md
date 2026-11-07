@@ -5,7 +5,7 @@
 > **Consolidated Invariants**: 338 Checks | **Rules**: 237 | **Domain Families**: 33  
 > **Author**: [Bhaskar Puppala (PATEL)](https://www.linkedin.com/in/bhaskerkpatel/)  
 > **Repositories**:  
-> • GitHub OWASP: [OWASP/OWASP-TriSuElla-AIDLCA-Framework](https://github.com/OWASP/OWASP-TriSuElla-AIDLCA-Framework)  
+> • GitHub OWASP: [OWASP/TriSuElla-AIDLCA-Framework](https://github.com/OWASP/TriSuElla-AIDLCA-Framework)  
 > • GitHub Source: [thundel/TriSuElla-AIDLCA-Framework](https://github.com/thundel/TriSuElla-AIDLCA-Framework)
 
 ---
@@ -20,7 +20,7 @@
 6. [Multi-Standard Regulatory Crosswalk Matrix](#6-multi-standard-regulatory-crosswalk-matrix)
 7. [Zero-Dependency CLI Gatekeeper (`trisu`)](#7-zero-dependency-cli-gatekeeper-trisu)
 8. [DevSecOps, GitHub Actions & SARIF Ingestion](#8-devsecops-github-actions--sarif-ingestion)
-9. [Autonomous Multi-Agent System (TRISUELLA-AIDLCAa)](#9-autonomous-multi-agent-system-trisuella-aidlaa)
+9. [Autonomous Multi-Agent System (solution/agents)](#9-autonomous-multi-agent-system-trisuella-aidlaa)
 10. [Quickstart & Project Onboarding](#10-quickstart--project-onboarding)
 
 ---
@@ -41,7 +41,7 @@ Every governance claim made in an enterprise policy is backed by deterministic A
 
 Below is the certified architectural blueprint of the OWASP TriSuElla platform, illustrating the operational layers, engine interactions, and active feedback loops:
 
-![OWASP TriSuElla Architecture Blueprint](https://raw.githubusercontent.com/OWASP/OWASP-TriSuElla-AIDLCA-Framework/main/Ref-Images/OWASP-TriSuElla-Architecture-v3.4-LATEST.jpg)
+![OWASP TriSuElla Architecture Blueprint](https://raw.githubusercontent.com/OWASP/TriSuElla-AIDLCA-Framework/main/framework/architecture/images/OWASP-TriSuElla-Architecture-v3.4-LATEST.jpg)
 
 ---
 
@@ -122,28 +122,28 @@ The `trisu` CLI requires **zero external pip dependencies** and runs natively on
 
 ```bash
 # 1. Verify governance templates and charters
-./trisu check
+./solution/cli/trisu check
 
 # 2. Run AST code security audit & generate SARIF
-./trisu audit --sarif trisuella-audit.sarif
+./solution/cli/trisu audit --sarif trisuella-audit.sarif
 
 # 3. Detect Shadow AI & uncatalogued foundation models
-./trisu shadow --sarif trisuella-shadow.sarif
+./solution/cli/trisu shadow --sarif trisuella-shadow.sarif
 
 # 4. Audit open-source dependencies & lockfile hashes
-./trisu oss --sarif trisuella-oss.sarif
+./solution/cli/trisu oss --sarif trisuella-oss.sarif
 
 # 5. Generate CycloneDX AI v1.6 Bill of Materials (AI-BoM)
-./trisu bom --output ai-bom.json
+./solution/cli/trisu bom --output ai-bom.json
 
 # 6. List all 237 rule definitions across 33 domain families
-./trisu rules
+./solution/cli/trisu rules
 
 # 7. Print compliance crosswalk matrix
-./trisu matrix
+./solution/cli/trisu matrix
 
 # 8. Scaffold governance files into an existing project
-./trisu init --target ./my-project
+./solution/cli/trisu init --target ./my-project
 ```
 
 ---
@@ -165,7 +165,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Run TriSuElla Audit
-        run: python tools/trisu-cli/trisu_validator.py audit --sarif audit.sarif
+        run: python solution/cli/trisu_validator.py audit --sarif audit.sarif
       - name: Upload SARIF to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
         if: always()
@@ -175,9 +175,9 @@ jobs:
 
 ---
 
-## 9. Autonomous Multi-Agent System (TRISUELLA-AIDLCAa)
+## 9. Autonomous Multi-Agent System (solution/agents)
 
-For autonomous agent factories, TriSuElla provides the **TRISUELLA-AIDLCAa** 8-stage pipeline:
+For autonomous agent factories, TriSuElla provides the **solution/agents** 8-stage pipeline:
 
 ```
 [1. Planner] ──> [2. Designer] ──> [3. Builder] ──> [4. Tester]
@@ -194,10 +194,10 @@ For autonomous agent factories, TriSuElla provides the **TRISUELLA-AIDLCAa** 8-s
 
 ## 10. Quickstart & Project Onboarding
 
-1. Clone the repository or copy `tools/trisu-cli/`.
-2. Initialize your target project: `./trisu init --target /path/to/project`.
+1. Clone the repository or copy `solution/cli/`.
+2. Initialize your target project: `./solution/cli/trisu init --target /path/to/project`.
 3. Configure thresholds in `trisuella.config.yaml`.
-4. Run `./trisu check` and `./trisu audit` to verify your baseline.
+4. Run `./solution/cli/trisu check` and `./solution/cli/trisu audit` to verify your baseline.
 5. Commit and enjoy continuous, automated compliance and security!
 
 ---

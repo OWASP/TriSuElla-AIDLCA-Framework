@@ -14,7 +14,7 @@ This document defines the **DUGNAD** (Collaboration) protocol for AI-to-Steward 
 ## 📂 Question File Standards
 
 ### File Naming Convention
-- Path: `TRISUELLA-AIDLCA-docs/questions/{stage-name}-questions.md`
+- Path: `framework/architecture/questions/{stage-name}-questions.md`
 - Examples: 
   - `strategic-intent-questions.md`
   - `architectural-invariant-questions.md`
@@ -53,7 +53,7 @@ Create the respective `{stage}-questions.md` file in the docs directory.
 ### Step 3: Steward Notification
 Inform the human steward:
 > I have identified [X] strategic decision points required to proceed with the **[Phase Name]**.
-> Please review and provide your intent in `TRISUELLA-AIDLCA-docs/questions/{stage}-questions.md`.
+> Please review and provide your intent in `framework/architecture/questions/{stage}-questions.md`.
 > **Action**: Reply with "Updated" or "Intent Confirmed" once you have filled in the [Answer]: tags.
 
 ### Step 4: Logic Synchronization

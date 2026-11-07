@@ -11,7 +11,7 @@ TriSuElla is neither merely GRC, nor merely AI governance, nor merely AppSec, no
 
 $$\textbf{Risk} \longrightarrow \textbf{Controls} \longrightarrow \textbf{Technical Reality} \longrightarrow \textbf{Evidence} \longrightarrow \textbf{Validation}$$
 
-![TriSuElla Continuous Trust & Assurance Architecture](../Ref-Images/OWASP-TriSuElla-Architecture-v3.4-LATEST.jpg)
+![TriSuElla Continuous Trust & Assurance Architecture](images/OWASP-TriSuElla-Architecture-v3.4-LATEST.jpg)
 
 ```text
                          TRISUELLA

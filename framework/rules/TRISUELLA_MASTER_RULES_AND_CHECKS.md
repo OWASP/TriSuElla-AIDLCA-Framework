@@ -706,13 +706,13 @@ The framework enforces security across 5 distinct physical layers (Control → A
 The framework includes specialized tooling to visualize and enforce governance invariants.
 
 ### 1. Sisu Codespace Explorer (Nexus Dashboard)
-- **Path**: `tools/sisu-ui/index.html`
+- **Path**: `solution/ui/index.html`
 - **Aesthetic**: "Cyber-Nordic" (Space Black, Cyan Glow, Glassmorphism).
 - **Core Function**: Node-based visualization of the "Brain" (Project Registry).
 - **Invariants**: Displays real-time compliance status of all 248 rules across the repository.
 
 ### 2. Operational Prompts Library
-- **Path**: `TRISUELLA-AIDLCA-Rules/prompts/`
+- **Path**: `framework/guides/prompts/`
 - **Modules**: Specialized system instructions for Compliance, Planning, and Testing agents to ensure deterministic governance enforcement.
 
 - **TRISU-TOOL-01 [CRITICAL]**: **Nexus Sync**. Sisu Explorer must demonstrate 100% rule-coverage and 'Green' status for all [CRITICAL] items before release.

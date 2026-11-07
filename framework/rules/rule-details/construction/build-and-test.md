@@ -23,7 +23,7 @@ Analyze the project to determine appropriate testing strategy:
 
 ## Step 2: Generate Build Instructions
 
-Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/build-instructions.md`:
+Create `framework/architecture/construction/build-and-test/build-instructions.md`:
 
 ```markdown
 # Build Instructions
@@ -74,7 +74,7 @@ Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/build-instructions.md`
 
 ## Step 3: Generate Unit Test Execution Instructions
 
-Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/unit-test-instructions.md`:
+Create `framework/architecture/construction/build-and-test/unit-test-instructions.md`:
 
 ```markdown
 # Unit Test Execution
@@ -104,7 +104,7 @@ If tests fail:
 
 ## Step 4: Generate Integration Test Instructions
 
-Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/integration-test-instructions.md`:
+Create `framework/architecture/construction/build-and-test/integration-test-instructions.md`:
 
 ```markdown
 # Integration Test Instructions
@@ -162,7 +162,7 @@ Test interactions between units/services to ensure they work together correctly.
 
 ## Step 5: Generate Performance Test Instructions (If Applicable)
 
-Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/performance-test-instructions.md`:
+Create `framework/architecture/construction/build-and-test/performance-test-instructions.md`:
 
 ```markdown
 # Performance Test Instructions
@@ -225,13 +225,13 @@ If performance doesn't meet requirements:
 Based on project requirements, generate additional test instruction files:
 
 ### Contract Tests (For Microservices)
-Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/contract-test-instructions.md`:
+Create `framework/architecture/construction/build-and-test/contract-test-instructions.md`:
 - API contract validation between services
 - Consumer-driven contract testing
 - Schema validation
 
 ### Security Tests
-Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/security-test-instructions.md` with the following mandatory sections:
+Create `framework/architecture/construction/build-and-test/security-test-instructions.md` with the following mandatory sections:
 
 #### SAST (Static Application Security Testing)
 - **Purpose**: Analyze source code for security vulnerabilities without executing the code
@@ -301,7 +301,7 @@ Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/security-test-instruct
 - **Report Retention**: Pen test reports MUST be retained for compliance purposes (minimum 1 year)
 
 ### End-to-End Tests
-Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/e2e-test-instructions.md`:
+Create `framework/architecture/construction/build-and-test/e2e-test-instructions.md`:
 - Complete user workflow testing
 - Cross-service scenarios
 - UI testing (if applicable)
@@ -310,7 +310,7 @@ Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/e2e-test-instructions.
 
 ## Step 7: Generate Test Summary
 
-Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/build-and-test-summary.md`:
+Create `framework/architecture/construction/build-and-test/build-and-test-summary.md`:
 
 ```markdown
 # Build and Test Summary
@@ -361,7 +361,7 @@ Create `TRISUELLA-AIDLCA-docs/construction/build-and-test/build-and-test-summary
 
 ## Step 8: Update State Tracking
 
-Update `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md`:
+Update `framework/architecture/TRISUELLA-AIDLCA-state.md`:
 - Mark Build and Test stage as complete
 - Update current status
 
@@ -390,7 +390,7 @@ Present comprehensive message:
 5. ✅ [additional test files as needed]
 6. ✅ build-and-test-summary.md
 
-Review the summary in TRISUELLA-AIDLCA-docs/construction/build-and-test/build-and-test-summary.md
+Review the summary in framework/architecture/construction/build-and-test/build-and-test-summary.md
 
 **Ready to proceed to Operations stage for deployment planning?""
 ```
@@ -399,7 +399,7 @@ Review the summary in TRISUELLA-AIDLCA-docs/construction/build-and-test/build-an
 
 ## Step 10: Log Interaction
 
-**MANDATORY**: Log the phase completion in `TRISUELLA-AIDLCA-docs/audit.md`:
+**MANDATORY**: Log the phase completion in `framework/architecture/audit.md`:
 
 ```markdown
 ## Build and Test Stage

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-OWASP TriSuElla-AIDLCA Policy Gate Validator (tools/trisu-cli)
+OWASP TriSuElla-AIDLCA Policy Gate Validator (solution/cli)
 Zero-dependency CLI tool for verifying TriSuElla framework artifacts,
 validating Zero Trust Code (ZTC) invariants, Open Source Security (OSS),
 policy manifests, and auditing blockers.
@@ -32,6 +32,60 @@ if sys.stdout.encoding != "utf-8":
 
 VERSION = "3.4.0"
 
+# --- Repository layout --------------------------------------------------------
+# framework/  = the WHAT: rules, architecture, guides (documents, no executable code)
+# solution/   = the HOW:  this CLI, UI, agents, templates, AI-BoM (software)
+MASTER_RULES_REL = "framework/rules/TRISUELLA_MASTER_RULES_AND_CHECKS.md"
+ENFORCEMENT_MAP_REL = "framework/rules/ENFORCEMENT-MAP.md"
+CONFIG_REL = "solution/cli/trisuella.config.yaml"
+BOM_REL = "solution/ai-bom/ai-bom.json"
+TEMPLATES_REL = "solution/templates"
+
+# Directories skipped by `audit` / `shadow` unless extended with --exclude-dir.
+# "tests" is deliberately NOT here: test code ships and leaks secrets too.
+DEFAULT_EXCLUDE_DIRS = (".git", "node_modules", "venv", ".venv", "tmp", "scratch", ".gemini")
+
+# Governance/data files that are validated by dedicated checks, not by the ZTC regexes.
+_DATA_FILE_NAMES = {
+    "ai-bom.json", "trisuella.config.yaml", "package-lock.json",
+    "trisuella-audit.sarif", "trisuella-oss.sarif",
+}
+_SELF_PATH = Path(__file__).resolve()
+_COMMENT_RX = re.compile(r"(?:^|\s)(?:#|//)")
+
+
+def locate(base: Path, *rels: str) -> Path:
+    """Return the first existing base/rel, else base/<first rel>."""
+    for rel in rels:
+        cand = base / rel
+        if cand.exists():
+            return cand
+    return base / rels[0]
+
+
+def is_self_or_data_file(fpath: Path) -> bool:
+    """Skip the validator itself (by real path, not by name) and governance data files."""
+    try:
+        if fpath.resolve() == _SELF_PATH:
+            return True
+    except OSError:
+        pass
+    return fpath.name in _DATA_FILE_NAMES
+
+
+def _strip_inline_comment(line: str) -> str:
+    """Remove a trailing '#' or '//' comment, but only when preceded by whitespace
+    (or at line start) so URLs such as https://host/path are never truncated."""
+    m = _COMMENT_RX.search(line)
+    return (line[:m.start()] if m else line).strip()
+
+
+def _report_skipped(names) -> None:
+    shown = sorted(n for n in names if n != ".git")
+    if shown:
+        print(f"  {Colors.YELLOW}i{Colors.RESET} Skipped directories (default excludes or --exclude-dir): {', '.join(shown)}")
+
+
 
 class Colors:
     GREEN = "\033[92m"
@@ -53,22 +107,22 @@ def find_framework_root(candidate: Path = None) -> Path:
     """Intelligently discovers the TriSuElla framework root directory."""
     if candidate is not None:
         cand_path = Path(candidate).resolve()
-        if (cand_path / "TRISUELLA_MASTER_RULES_AND_CHECKS.md").exists():
+        if (cand_path / MASTER_RULES_REL).exists():
             return cand_path
         for p in cand_path.parents:
-            if (p / "TRISUELLA_MASTER_RULES_AND_CHECKS.md").exists():
+            if (p / MASTER_RULES_REL).exists():
                 return p
 
     cwd = Path.cwd().resolve()
-    if (cwd / "TRISUELLA_MASTER_RULES_AND_CHECKS.md").exists():
+    if (cwd / MASTER_RULES_REL).exists():
         return cwd
     for p in cwd.parents:
-        if (p / "TRISUELLA_MASTER_RULES_AND_CHECKS.md").exists():
+        if (p / MASTER_RULES_REL).exists():
             return p
 
     script_dir = Path(__file__).resolve().parent
     for p in [script_dir] + list(script_dir.parents):
-        if (p / "TRISUELLA_MASTER_RULES_AND_CHECKS.md").exists():
+        if (p / MASTER_RULES_REL).exists():
             return p
 
     return cwd
@@ -109,21 +163,21 @@ def cmd_check(root_dir: Path = None) -> int:
     print(f"{Colors.BOLD}[*] Checking TriSuElla framework core artifacts in: {root_dir}...{Colors.RESET}")
     
     required_artifacts = [
-        "TRISUELLA_MASTER_RULES_AND_CHECKS.md",
-        "TRISUELLA-AIDLCA-docs/Unified-Trust-Risk-Compliance-Architecture.md",
-        "TRISUELLA-AIDLCA-docs/TriSuElla-Unified-Crosswalk-Matrix.md",
-        "TRISUELLA-AIDLCA-Rules/README.md",
-        "TRISUELLA-AIDLCA-Rules/CHARTER.md",
-        "TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rules/core-workflow.md",
-        "TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md",
-        "TRISUELLA-AIDLCAa/README.md",
-        "TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rule-details/extensions/security/zero-trust/zero-trust-code.md",
-        "TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rule-details/extensions/security/oss/open-source-security.md",
-        "TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rule-details/extensions/compliance/compliance-soc2-iso27001.md",
-        "TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rule-details/extensions/compliance/compliance-nist-ai-rmf.md",
-        "TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rule-details/extensions/security/baseline/owasp-full-spectrum-appsec.md",
-        "trisuella.config.yaml",
-        "ai-bom.json",
+        MASTER_RULES_REL,
+        "framework/architecture/Unified-Trust-Risk-Compliance-Architecture.md",
+        "framework/architecture/TriSuElla-Unified-Crosswalk-Matrix.md",
+        "framework/rules/README.md",
+        "framework/rules/CHARTER.md",
+        "framework/rules/workflow/core-workflow.md",
+        "framework/architecture/TRISUELLA-AIDLCA-state.md",
+        "solution/agents/README.md",
+        "framework/rules/rule-details/extensions/security/zero-trust/zero-trust-code.md",
+        "framework/rules/rule-details/extensions/security/oss/open-source-security.md",
+        "framework/rules/rule-details/extensions/compliance/compliance-soc2-iso27001.md",
+        "framework/rules/rule-details/extensions/compliance/compliance-nist-ai-rmf.md",
+        "framework/rules/rule-details/extensions/security/baseline/owasp-full-spectrum-appsec.md",
+        CONFIG_REL,
+        BOM_REL,
     ]
 
     missing = []
@@ -137,13 +191,13 @@ def cmd_check(root_dir: Path = None) -> int:
 
     print(f"\n{Colors.BOLD}[*] Checking Developer Drop-in Templates...{Colors.RESET}")
     required_templates = [
-        "templates/.cursorrules",
-        "templates/CLAUDE.md",
-        "templates/copilot-instructions.md",
-        "templates/.windsurfrules",
-        "templates/trisuella.config.yaml",
-        "templates/.pre-commit-config.yaml",
-        "templates/.github/workflows/trisuella-gate.yml",
+        "solution/templates/.cursorrules",
+        "solution/templates/CLAUDE.md",
+        "solution/templates/copilot-instructions.md",
+        "solution/templates/.windsurfrules",
+        "solution/templates/trisuella.config.yaml",
+        "solution/templates/.pre-commit-config.yaml",
+        "solution/templates/.github/workflows/trisuella-gate.yml",
     ]
 
     for tpl in required_templates:
@@ -164,7 +218,7 @@ def cmd_check(root_dir: Path = None) -> int:
 
 def load_trisuella_config(root_dir: Path) -> dict:
     """Zero-dependency parser for trisuella.config.yaml."""
-    cfg_file = root_dir / "trisuella.config.yaml"
+    cfg_file = root_dir / CONFIG_REL
     if not cfg_file.exists():
         return {}
     
@@ -230,7 +284,7 @@ def load_trisuella_config(root_dir: Path) -> dict:
 
 def get_declared_ai_assets(root_dir: Path) -> dict:
     """Extracts declared AI models, suppliers, and data components from CycloneDX ai-bom.json."""
-    bom_file = root_dir / "ai-bom.json"
+    bom_file = root_dir / BOM_REL
     declared = {
         "models": set(),
         "suppliers": set(),
@@ -420,7 +474,7 @@ def scan_file_for_ztc(fpath: Path, root_dir: Path) -> list:
     try:
         text = fpath.read_text(encoding="utf-8", errors="ignore")
         for idx, line in enumerate(text.splitlines(), 1):
-            stripped = line.split("#")[0].split("//")[0].strip()
+            stripped = _strip_inline_comment(line)
             if not stripped or stripped.startswith("*"):
                 continue
             for pattern, sev, rule_id, desc in ztc_patterns:
@@ -575,7 +629,7 @@ def scan_file_for_shadow_ai(fpath: Path, root_dir: Path, declared_assets: dict, 
         require_gateway = config.get("shadow_ai_governance", {}).get("require_enterprise_gateway", True)
         
         for idx, line in enumerate(text.splitlines(), 1):
-            stripped = line.split("#")[0].split("//")[0].strip()
+            stripped = _strip_inline_comment(line)
             if not stripped or stripped.startswith("*"):
                 continue
 
@@ -682,7 +736,7 @@ def cmd_oss(root_dir: Path, target_dir: Path = None, sarif_file: str = None) -> 
 
     # 4. TRISU-OSS-05: Automated CycloneDX AI-BoM Validation
     print(f"  {Colors.BLUE}--> Checking Software Bill of Materials (SBOM / AI-BoM) (TRISU-OSS-05)...{Colors.RESET}")
-    bom_file = search_path / "ai-bom.json"
+    bom_file = locate(search_path, "ai-bom.json", BOM_REL)
     if bom_file.exists():
         try:
             bom_data = json.loads(bom_file.read_text(encoding="utf-8", errors="ignore"))
@@ -702,7 +756,7 @@ def cmd_oss(root_dir: Path, target_dir: Path = None, sarif_file: str = None) -> 
             findings.append(("ai-bom.json", 1, "HIGH", "TRISU-OSS-05", f"Malformed ai-bom.json: {err}"))
     else:
         # Check if project root requires AI-BoM
-        if (search_path / "trisuella.config.yaml").exists():
+        if locate(search_path, "trisuella.config.yaml", CONFIG_REL).exists():
             findings.append((
                 "ai-bom.json",
                 1,
@@ -724,7 +778,7 @@ def cmd_oss(root_dir: Path, target_dir: Path = None, sarif_file: str = None) -> 
     return 0
 
 
-def cmd_audit(root_dir: Path, target_dir: Path = None, sarif_file: str = None) -> int:
+def cmd_audit(root_dir: Path, target_dir: Path = None, sarif_file: str = None, extra_exclude=None) -> int:
     """Audits repository files for blocking security tags, Zero Trust Code violations, and exposed secrets."""
     search_path = target_dir or root_dir
     print(f"{Colors.BOLD}[*] Auditing for blocking security findings in: {search_path}{Colors.RESET}")
@@ -752,9 +806,11 @@ def cmd_audit(root_dir: Path, target_dir: Path = None, sarif_file: str = None) -
     print(f"\n{Colors.BOLD}[*] Running hybrid AST & static Zero Trust Code (ZTC) scanning...{Colors.RESET}")
     config = load_trisuella_config(root_dir)
     declared_assets = get_declared_ai_assets(root_dir)
-    exclude_dirs = {".git", "node_modules", "venv", ".venv", "tmp", "scratch", ".gemini", "tests"}
+    exclude_dirs = set(DEFAULT_EXCLUDE_DIRS) | set(extra_exclude or ())
+    skipped_dirs = set()
     
     for root, dirs, files in os.walk(search_path):
+        skipped_dirs.update(d for d in dirs if d in exclude_dirs)
         dirs[:] = [d for d in dirs if d not in exclude_dirs]
         for fname in files:
             # Check for raw production database dumps or unmasked dataset artifacts (TRISU-DLIT-02)
@@ -766,7 +822,7 @@ def cmd_audit(root_dir: Path, target_dir: Path = None, sarif_file: str = None) -
 
             if fname.endswith((".py", ".js", ".ts", ".go", ".java", ".json", ".yaml", ".yml", ".env")):
                 # Do not flag the validator itself or known generator scripts
-                if fname in ["trisu_validator.py", "test_ztc.py", "create_ztc_specs.py", "update_usage_guides.py", "merge_usage_guides.py", "update_validator_ztc.py", "apply_ztc_updates.py", "ai-bom.json", "trisuella.config.yaml", "package-lock.json"]:
+                if is_self_or_data_file(Path(root) / fname):
                     continue
                 fpath = Path(root) / fname
                 f_findings = scan_file_for_ztc(fpath, root_dir)
@@ -774,6 +830,8 @@ def cmd_audit(root_dir: Path, target_dir: Path = None, sarif_file: str = None) -
                 # Shadow AI & Code-to-BOM scanning
                 s_findings = scan_file_for_shadow_ai(fpath, root_dir, declared_assets, config)
                 open_findings.extend(s_findings)
+
+    _report_skipped(skipped_dirs)
 
     if sarif_file:
         export_sarif(open_findings, sarif_file, root_dir)
@@ -789,7 +847,7 @@ def cmd_audit(root_dir: Path, target_dir: Path = None, sarif_file: str = None) -
     return 0
 
 
-def cmd_shadow(root_dir: Path, target_dir: Path = None, sarif_file: str = None) -> int:
+def cmd_shadow(root_dir: Path, target_dir: Path = None, sarif_file: str = None, extra_exclude=None) -> int:
     """Comprehensive Shadow AI audit, model whitelisting, and Code-to-BOM reconciliation."""
     root_dir = find_framework_root(root_dir)
     search_path = target_dir or root_dir
@@ -801,7 +859,7 @@ def cmd_shadow(root_dir: Path, target_dir: Path = None, sarif_file: str = None) 
 
     # 1. TRISU-SHADOW-04 & TRISU-OSS-05: AI-BoM Structural and Attestation Verification
     print(f"\n  {Colors.BLUE}--> Verifying AI-BoM Attestation & Governance Properties (TRISU-SHADOW-04)...{Colors.RESET}")
-    bom_file = root_dir / "ai-bom.json"
+    bom_file = root_dir / BOM_REL
     if not bom_file.exists():
         findings.append(("ai-bom.json", 1, "CRITICAL", "TRISU-SHADOW-01", "Missing required CycloneDX ai-bom.json inventory"))
     else:
@@ -844,16 +902,20 @@ def cmd_shadow(root_dir: Path, target_dir: Path = None, sarif_file: str = None) 
 
     # 2. Code-to-BOM Reconciliation & Static Scanner
     print(f"\n  {Colors.BLUE}--> Running Code-to-BOM Reconciliation & Egress Scanner (TRISU-SHADOW-01/03/05/06)...{Colors.RESET}")
-    exclude_dirs = {".git", "node_modules", "venv", ".venv", "tmp", "scratch", ".gemini", "tests"}
+    exclude_dirs = set(DEFAULT_EXCLUDE_DIRS) | set(extra_exclude or ())
+    skipped_dirs = set()
     for root, dirs, files in os.walk(search_path):
+        skipped_dirs.update(d for d in dirs if d in exclude_dirs)
         dirs[:] = [d for d in dirs if d not in exclude_dirs]
         for fname in files:
             if fname.endswith((".py", ".js", ".ts", ".go", ".java", ".json", ".yaml", ".yml", ".env")):
-                if fname in ["trisu_validator.py", "ai-bom.json", "trisuella-audit.sarif", "trisuella-oss.sarif", "trisuella.config.yaml", "package-lock.json"]:
+                if is_self_or_data_file(Path(root) / fname):
                     continue
                 fpath = Path(root) / fname
                 f_findings = scan_file_for_shadow_ai(fpath, root_dir, declared_assets, config)
                 findings.extend(f_findings)
+
+    _report_skipped(skipped_dirs)
 
     if sarif_file:
         export_sarif(findings, sarif_file, root_dir)
@@ -938,8 +1000,8 @@ def cmd_init(target_dir: Path, framework_dir: Path = None) -> int:
     """Scaffolds TriSuElla v3.4.0 templates and configuration into target project."""
     framework_dir = find_framework_root(framework_dir)
     print(f"{Colors.BOLD}[*] Initializing TriSuElla-AIDLCA v{VERSION} in: {target_dir}{Colors.RESET}")
-    print(f"[*] Framework templates source: {framework_dir / 'templates'}")
-    templates_dir = framework_dir / "templates"
+    print(f"[*] Framework templates source: {framework_dir / TEMPLATES_REL}")
+    templates_dir = framework_dir / TEMPLATES_REL
     
     if not templates_dir.exists():
         print(f"{Colors.RED}Templates directory not found at: {templates_dir}{Colors.RESET}")
@@ -1075,7 +1137,7 @@ def cmd_bom(root_dir: Path = None, output_file: str = "ai-bom.json") -> int:
 def cmd_rules(root_dir: Path = None) -> int:
     """Validates rule identifiers and cross-references in the master rules file."""
     root_dir = find_framework_root(root_dir)
-    master_file = root_dir / "TRISUELLA_MASTER_RULES_AND_CHECKS.md"
+    master_file = root_dir / MASTER_RULES_REL
     if not master_file.exists():
         print(f"{Colors.RED}Master rules file not found: {master_file}{Colors.RESET}")
         return 1
@@ -1098,8 +1160,122 @@ def cmd_rules(root_dir: Path = None) -> int:
         print(f"  {Colors.BLUE}•{Colors.RESET} {fam:<16} : {count:>2} rules")
 
     print(f"\n  {Colors.GREEN}✓{Colors.RESET} Discovered {len(unique_rules)} unique TRISU-* rule identifiers across {len(families)} domains.")
-    print(f"  {Colors.GREEN}✓{Colors.RESET} Master rules index integrity valid (338 consolidated checks, {len(unique_rules)} unique rules).")
+    emitted = scanner_emitted_rule_ids()
+    enforced = [r for r in unique_rules if r in emitted]
+    pct = (100.0 * len(enforced) / len(unique_rules)) if unique_rules else 0.0
+    print(f"  {Colors.GREEN}✓{Colors.RESET} Master rules index parsed: {len(unique_rules)} unique rules in {len(families)} families.")
+    print(f"  {Colors.YELLOW}i{Colors.RESET} Scanner-enforced: {len(enforced)} of {len(unique_rules)} rules ({pct:.1f}%). Run `trisu map` for the rule-to-enforcement map.")
+    return 0 if unique_rules else 1
+
+
+_RULE_DEF = re.compile(
+    r"^\s*[-*]\s*\*\*(TRISU-[A-Z0-9]+-\d+)\s*\[(CRITICAL|HIGH|MEDIUM|LOW)\]\*\*:\s*(?:\*\*(.+?)\*\*)?",
+    re.M,
+)
+FAMILY_COMMAND = {
+    "TRISU-ZTC": "trisu audit",
+    "TRISU-DLIT": "trisu audit",
+    "TRISU-OSS": "trisu oss",
+    "TRISU-SHADOW": "trisu shadow",
+}
+
+
+def scanner_emitted_rule_ids() -> set:
+    """Rule IDs that scanner code emits as findings (exact string constants in this file's AST;
+    comments and prose are ignored)."""
+    tree = ast.parse(Path(__file__).read_text(encoding="utf-8"))
+    rx = re.compile(r"^TRISU-[A-Z0-9]+-\d+$")
+    return {n.value for n in ast.walk(tree)
+            if isinstance(n, ast.Constant) and isinstance(n.value, str) and rx.match(n.value)}
+
+
+def parse_master_rules(text: str) -> dict:
+    """Return {rule_id: (severity, title)} from the master rulebook."""
+    rules = {}
+    for m in _RULE_DEF.finditer(text):
+        title = (m.group(3) or "").strip().rstrip(".")
+        rules.setdefault(m.group(1), (m.group(2), title))
+    for rid in re.findall(r"(TRISU-[A-Z0-9]+-\d+)", text):
+        rules.setdefault(rid, ("-", ""))
+    return rules
+
+
+def render_enforcement_map(rules: dict, emitted: set) -> str:
+    ids = sorted(rules)
+    families = {}
+    for rid in ids:
+        families.setdefault(rid.rsplit("-", 1)[0], []).append(rid)
+    total = len(ids)
+    auto = sum(1 for r in ids if r in emitted)
+    pct = (100.0 * auto / total) if total else 0.0
+    out = [
+        "# Rule Enforcement Map",
+        "",
+        f"> Generated by `trisu map --write` (TriSuElla v{VERSION}). **Do not edit by hand** - CI runs `trisu map --check`.",
+        ">",
+        "> **Automated** = the scanner (`solution/cli/trisu_validator.py`) emits a finding tagged with this rule ID.",
+        "> That is a coverage floor, not proof the whole rule text is enforced - read the rule in the",
+        "> [master rulebook](TRISUELLA_MASTER_RULES_AND_CHECKS.md).",
+        "> **Not scanner-enforced** = enforced by process: AI-assistant directives, human review, or manual evidence.",
+        "",
+        "## Summary",
+        "",
+        "| Metric | Value |",
+        "|---|---|",
+        f"| Unique rules in the master rulebook | {total} |",
+        f"| Automated (scanner emits a finding) | {auto} ({pct:.1f}%) |",
+        f"| Not scanner-enforced | {total - auto} |",
+        "",
+        "## Coverage by family",
+        "",
+        "| Family | Rules | Automated | Coverage |",
+        "|---|---:|---:|---:|",
+    ]
+    for fam in sorted(families):
+        rs = families[fam]
+        a = sum(1 for r in rs if r in emitted)
+        out.append(f"| `{fam}` | {len(rs)} | {a} | {100.0 * a / len(rs):.0f}% |")
+    out += ["", "## Every rule", ""]
+    for fam in sorted(families):
+        out += [f"### {fam}", "", "| Rule | Severity | Title | Status | Primary command |", "|---|---|---|---|---|"]
+        for rid in families[fam]:
+            sev, title = rules[rid]
+            title = title.replace("|", "\\|")
+            if rid in emitted:
+                out.append(f"| `{rid}` | {sev} | {title} | Automated | `{FAMILY_COMMAND.get(fam, 'trisu audit')}` |")
+            else:
+                out.append(f"| `{rid}` | {sev} | {title} | Not scanner-enforced | - |")
+        out.append("")
+    return "\n".join(out).rstrip("\n") + "\n"
+
+
+def cmd_map(root_dir: Path = None, output_file: str = None, write: bool = False, check: bool = False) -> int:
+    """Rule-to-enforcement map: which framework rules does the solution actually enforce?"""
+    root_dir = find_framework_root(root_dir)
+    master = root_dir / MASTER_RULES_REL
+    if not master.exists():
+        print(f"{Colors.RED}Master rules file not found: {master}{Colors.RESET}")
+        return 1
+    rules = parse_master_rules(master.read_text(encoding="utf-8", errors="ignore"))
+    emitted = scanner_emitted_rule_ids()
+    doc = render_enforcement_map(rules, emitted)
+    target = Path(output_file) if output_file else root_dir / ENFORCEMENT_MAP_REL
+    auto = sum(1 for r in rules if r in emitted)
+    print(f"{Colors.BOLD}[*] Rule enforcement coverage{Colors.RESET}: {auto} of {len(rules)} rules "
+          f"({100.0 * auto / max(len(rules), 1):.1f}%) are emitted by scanner code.")
+    if check:
+        current = target.read_text(encoding="utf-8").replace("\r\n", "\n") if target.exists() else ""
+        if current != doc:
+            print(f"{Colors.RED}STALE:{Colors.RESET} {target} is out of date. Run `trisu map --write`.")
+            return 1
+        print(f"  {Colors.GREEN}✓{Colors.RESET} {target.name} is up to date.")
+        return 0
+    if write or output_file:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(doc, encoding="utf-8", newline="\n")
+        print(f"  {Colors.GREEN}✓{Colors.RESET} Wrote {target}")
     return 0
+
 
 
 def cmd_matrix(root_dir: Path = None) -> int:
@@ -1134,7 +1310,7 @@ def cmd_matrix(root_dir: Path = None) -> int:
     print(f"{Colors.BOLD}[*] Continuous Assurance Closed Loop:{Colors.RESET}")
     print(f"  DISCOVER (Map) --> ASSESS (Standards) --> ATTACK (Red Team) --> CONTROL (Guardrails)")
     print(f"  --> OBSERVE (Telemetry) --> EVIDENCE (Audit Ledger) --> VALIDATE (Independent Assurance)\n")
-    print(f"  {Colors.GREEN}✓{Colors.RESET} Full crosswalk available at: TRISUELLA-AIDLCA-docs/TriSuElla-Unified-Crosswalk-Matrix.md")
+    print(f"  {Colors.GREEN}✓{Colors.RESET} Full crosswalk available at: framework/architecture/TriSuElla-Unified-Crosswalk-Matrix.md")
     return 0
 
 
@@ -1145,7 +1321,7 @@ def resolve_target_dir(target_arg: str = None) -> Path:
     cwd = Path.cwd().resolve()
     script_dir = Path(__file__).resolve().parent
     if cwd == script_dir:
-        # Default to repo root if invoked from tools/trisu-cli without explicit dir
+        # Default to repo root if invoked from solution/cli without explicit dir
         return find_framework_root()
     return cwd
 
@@ -1199,6 +1375,17 @@ def main():
     matrix_parser.add_argument("path", nargs="?", default=None, help="Root directory (default: autodetected framework root)")
     matrix_parser.add_argument("--dir", "--target", dest="dir", default=None, help="Root directory (default: autodetected framework root)")
 
+    map_parser = subparsers.add_parser("map", help="Rule-to-enforcement map: which framework rules the scanner actually enforces")
+    map_parser.add_argument("path", nargs="?", default=None, help="Root directory (default: autodetected repo root)")
+    map_parser.add_argument("--dir", "--target", dest="dir", default=None, help="Root directory (default: autodetected repo root)")
+    map_parser.add_argument("--write", action="store_true", help="Write framework/rules/ENFORCEMENT-MAP.md")
+    map_parser.add_argument("--output", default=None, help="Write the map to this path instead")
+    map_parser.add_argument("--check", action="store_true", help="Exit 1 if the committed map is stale")
+
+    for _p in (audit_parser, shadow_parser):
+        _p.add_argument("--exclude-dir", action="append", default=[], metavar="NAME",
+                        help="Additional directory name to skip (repeatable). 'tests' is scanned by default.")
+
     args = parser.parse_args()
 
     if args.command == "check":
@@ -1207,11 +1394,11 @@ def main():
     elif args.command == "audit":
         chosen_dir = args.dir or args.path
         target = resolve_target_dir(chosen_dir)
-        sys.exit(cmd_audit(find_framework_root(), target_dir=target, sarif_file=args.sarif))
+        sys.exit(cmd_audit(find_framework_root(), target_dir=target, sarif_file=args.sarif, extra_exclude=args.exclude_dir))
     elif args.command == "shadow":
         chosen_dir = args.dir or args.path
         target = resolve_target_dir(chosen_dir)
-        sys.exit(cmd_shadow(find_framework_root(), target_dir=target, sarif_file=args.sarif))
+        sys.exit(cmd_shadow(find_framework_root(), target_dir=target, sarif_file=args.sarif, extra_exclude=args.exclude_dir))
     elif args.command == "oss":
         chosen_dir = args.dir or args.path
         target = resolve_target_dir(chosen_dir)
@@ -1226,6 +1413,10 @@ def main():
     elif args.command == "rules":
         chosen_dir = args.dir or args.path
         sys.exit(cmd_rules(Path(chosen_dir) if chosen_dir else None))
+    elif args.command == "map":
+        chosen_dir = args.dir or args.path
+        sys.exit(cmd_map(Path(chosen_dir) if chosen_dir else None,
+                         output_file=args.output, write=args.write, check=args.check))
     elif args.command == "matrix":
         chosen_dir = args.dir or args.path
         sys.exit(cmd_matrix(Path(chosen_dir) if chosen_dir else None))

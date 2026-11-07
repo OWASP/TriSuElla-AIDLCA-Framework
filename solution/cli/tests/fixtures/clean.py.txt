@@ -1,0 +1,7 @@
+import json
+
+DOCS = "https://example.com/docs#section"  # a URL with a fragment is not a finding
+
+
+def parse(text):
+    return json.loads(text)

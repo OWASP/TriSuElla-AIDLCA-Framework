@@ -28,5 +28,5 @@ This directory contains official high-resolution architecture diagrams and refer
 
 * **Direct Local Link**:
   [`OWASP-TriSuElla-Architecture-v3.4-LATEST.jpg`](OWASP-TriSuElla-Architecture-v3.4-LATEST.jpg)
-* **From Subdirectories** (e.g. `TRISUELLA-AIDLCA-docs/`):
-  Use `![OWASP TriSuElla Platform Architecture](../Ref-Images/OWASP-TriSuElla-Architecture-v3.4-LATEST.jpg)`
+* **From Subdirectories** (e.g. `framework/architecture/`):
+  Use `![OWASP TriSuElla Platform Architecture](OWASP-TriSuElla-Architecture-v3.4-LATEST.jpg)`

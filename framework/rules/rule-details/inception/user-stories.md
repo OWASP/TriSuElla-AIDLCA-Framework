@@ -81,7 +81,7 @@ For medium priority cases, execute user stories if ANY of these apply:
    - Confirm this isn't a simple case that should be skipped
 
 3. **Document Assessment Decision**:
-   - Create `TRISUELLA-AIDLCA-docs/inception/plans/user-stories-assessment.md`
+   - Create `framework/architecture/inception/plans/user-stories-assessment.md`
    - Include reasoning for why user stories are valuable for this request
    - Reference specific assessment criteria that apply
    - Explain expected benefits (clarity, testing, stakeholder alignment)
@@ -162,7 +162,7 @@ For medium priority cases, execute user stories if ANY of these apply:
 - Allow for hybrid approaches with clear decision criteria
 
 ## Step 6: Store Story Plan
-- Save the complete story plan with embedded questions in `TRISUELLA-AIDLCA-docs/inception/plans/` directory
+- Save the complete story plan with embedded questions in `framework/architecture/inception/plans/` directory
 - Filename: `story-generation-plan.md`
 - Include all [Answer]: tags for user input
 - Ensure plan is comprehensive and covers all story development aspects
@@ -209,7 +209,7 @@ If the analysis in step 9 reveals ANY ambiguous answers, you MUST:
 - Keep focus on story structure and format decisions
 
 ## Step 12: Log Approval Prompt
-- Before asking for approval, log the prompt with timestamp in `TRISUELLA-AIDLCA-docs/audit.md`
+- Before asking for approval, log the prompt with timestamp in `framework/architecture/audit.md`
 - Include the complete approval prompt text
 - Use ISO 8601 timestamp format
 
@@ -219,7 +219,7 @@ If the analysis in step 9 reveals ANY ambiguous answers, you MUST:
 - If user requests changes, update the plan and repeat the approval process
 
 ## Step 14: Record Approval Response
-- Log the user's approval response with timestamp in `TRISUELLA-AIDLCA-docs/audit.md`
+- Log the user's approval response with timestamp in `framework/architecture/audit.md`
 - Include the exact user response text
 - Mark the approval status clearly
 
@@ -228,7 +228,7 @@ If the analysis in step 9 reveals ANY ambiguous answers, you MUST:
 # PART 2: GENERATION
 
 ## Step 15: Load Story Generation Plan
-- [ ] Read the complete story plan from `TRISUELLA-AIDLCA-docs/inception/plans/story-generation-plan.md`
+- [ ] Read the complete story plan from `framework/architecture/inception/plans/story-generation-plan.md`
 - [ ] Identify the next uncompleted step (first [ ] checkbox)
 - [ ] Load the context and requirements for that step
 
@@ -240,7 +240,7 @@ If the analysis in step 9 reveals ANY ambiguous answers, you MUST:
 
 ## Step 17: Update Progress
 - [ ] Mark the completed step as [x] in the story generation plan
-- [ ] Update `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md` current status
+- [ ] Update `framework/architecture/TRISUELLA-AIDLCA-state.md` current status
 - [ ] Save all generated artifacts
 
 ## Step 18: Continue or Complete Generation
@@ -249,7 +249,7 @@ If the analysis in step 9 reveals ANY ambiguous answers, you MUST:
 - [ ] Ensure all mandatory artifacts are generated
 
 ## Step 19: Log Approval Prompt
-- Before asking for approval, log the prompt with timestamp in `TRISUELLA-AIDLCA-docs/audit.md`
+- Before asking for approval, log the prompt with timestamp in `framework/architecture/audit.md`
 - Include the complete approval prompt text
 - Use ISO 8601 timestamp format
 
@@ -272,7 +272,7 @@ If the analysis in step 9 reveals ANY ambiguous answers, you MUST:
 
 ```markdown
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
-> Please examine the user stories and personas at: `TRISUELLA-AIDLCA-docs/inception/user-stories/stories.md` and `TRISUELLA-AIDLCA-docs/inception/user-stories/personas.md`
+> Please examine the user stories and personas at: `framework/architecture/inception/user-stories/stories.md` and `framework/architecture/inception/user-stories/personas.md`
 
 
 
@@ -292,7 +292,7 @@ If the analysis in step 9 reveals ANY ambiguous answers, you MUST:
 - If user requests changes, update stories and repeat the approval process
 
 ## Step 22: Record Approval Response
-- Log the user's approval response with timestamp in `TRISUELLA-AIDLCA-docs/audit.md`
+- Log the user's approval response with timestamp in `framework/architecture/audit.md`
 - Include the exact user response text
 - Mark the approval status clearly
 

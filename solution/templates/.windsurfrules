@@ -7,7 +7,7 @@ engines: [TRI-Trust, SU-Secure, ELLA-Evaluate-Learn-Look-Act]
 pillars: [SISU, TILLIT, DUGNAD]
 
 rules:
-  - "Follow workflow in TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rules/core-workflow.md"
+  - "Follow workflow in framework/rules/workflow/core-workflow.md"
   - "Adhere to 338 checks and 237 rules in TRISUELLA_MASTER_RULES_AND_CHECKS.md and the 9 Solution Layers"
   - "Treat [CRITICAL] and [HIGH] security findings as blocking gates"
   - "Never embed raw API credentials or tokens in code or configs"

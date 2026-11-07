@@ -1,19 +1,19 @@
-# 🤖 Multi-Agent Lifecycle Architecture (TRISUELLA-AIDLCAa)
+# 🤖 Multi-Agent Lifecycle Architecture (solution/agents)
 
 > **Platform Version**: 3.4.0 | **Consolidated Invariants**: 338 Checks | **Rules**: 237  
-> **Repository**: [OWASP/OWASP-TriSuElla-AIDLCA-Framework](https://github.com/OWASP/OWASP-TriSuElla-AIDLCA-Framework)
+> **Repository**: [OWASP/TriSuElla-AIDLCA-Framework](https://github.com/OWASP/TriSuElla-AIDLCA-Framework)
 
 ---
 
 ## 🧭 Autonomous Multi-Agent Governance
 
-**TRISUELLA-AIDLCAa** (AI-Driven Development Life Cycle Agents) is the automated multi-agent operational fabric of the TriSuElla platform. It translates the 338 governance checks and sequential lifecycle gates into a coordinated pipeline of specialized autonomous agents operating under a Zero-Trust orchestration bus.
+**solution/agents** (AI-Driven Development Life Cycle Agents) is the automated multi-agent operational fabric of the TriSuElla platform. It translates the 338 governance checks and sequential lifecycle gates into a coordinated pipeline of specialized autonomous agents operating under a Zero-Trust orchestration bus.
 
 While individual engineers can apply the TriSuElla rules as system instructions in AI IDEs (such as Antigravity, Cursor, Copilot, or Claude Code), autonomous software factories and enterprise DevSecOps teams run the full 8-stage agent pipeline.
 
 ```mermaid
 graph TD
-    subgraph "TRISUELLA-AIDLCAa Orchestration Fabric (Zero Trust Bus)"
+    subgraph "solution/agents Orchestration Fabric (Zero Trust Bus)"
         P1["1. Planner Agent<br/>STRIDE-AI Threat Modeling"] --> P2["2. Designer Agent<br/>NFR & Architecture Specs"]
         P2 --> P3["3. Builder Agent<br/>Zero Trust Code Gen"]
         P3 --> P4["4. Tester Agent<br/>PyRIT / Garak / SAST"]

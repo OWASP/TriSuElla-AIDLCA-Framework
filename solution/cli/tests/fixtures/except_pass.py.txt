@@ -1,0 +1,5 @@
+def go():
+    try:
+        risky()
+    except:
+        pass

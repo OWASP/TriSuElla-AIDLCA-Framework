@@ -3,11 +3,11 @@
 set -e
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 if command -v python3 >/dev/null 2>&1 && python3 --version >/dev/null 2>&1; then
-    exec python3 "$DIR/tools/trisu-cli/trisu_validator.py" "$@"
+    exec python3 "$DIR/trisu_validator.py" "$@"
 elif command -v python >/dev/null 2>&1 && python --version >/dev/null 2>&1; then
-    exec python "$DIR/tools/trisu-cli/trisu_validator.py" "$@"
+    exec python "$DIR/trisu_validator.py" "$@"
 elif command -v py >/dev/null 2>&1; then
-    exec py -3 "$DIR/tools/trisu-cli/trisu_validator.py" "$@"
+    exec py -3 "$DIR/trisu_validator.py" "$@"
 else
     echo "Error: Python 3 is required to run TriSuElla CLI." >&2
     exit 1

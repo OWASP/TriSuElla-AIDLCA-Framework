@@ -2,7 +2,7 @@
 **Evaluation for AI-driven IDE Readiness (Cursor, Windsurf, Copilot, Cline)**
 
 ## Overview
-After a deep structural analysis of the `TRISUELLA-AIDLCA-Rules` directory, including the `README.md` and the `core-workflow.md` anchor files, it is confirmed that this framework is **exceptionally well-architected for modern AI-driven IDE consumption**. 
+After a deep structural analysis of the `framework/rules` directory, including the `README.md` and the `core-workflow.md` anchor files, it is confirmed that this framework is **exceptionally well-architected for modern AI-driven IDE consumption**. 
 
 It systematically solves some of the most complex architectural problems that typically cause autonomous coding agents to hallucinate, lose context, or deviate from secure coding practices over long development lifecycles.
 

@@ -11,7 +11,7 @@ Determine non-functional requirements for the unit and make tech stack choices.
 ## Steps to Execute
 
 ### Step 1: Analyze Functional Design
-- Read functional design artifacts from `TRISUELLA-AIDLCA-docs/construction/{unit-name}/functional-design/`
+- Read functional design artifacts from `framework/architecture/construction/{unit-name}/functional-design/`
 - Understand business logic complexity and requirements
 
 ### Step 2: Create NFR Requirements Plan
@@ -41,7 +41,7 @@ Determine non-functional requirements for the unit and make tech stack choices.
 - **AI-DLCA & ISO 5259 Data Quality** - If AI/ML workloads exist, determine bias metrics, provenance tracing, and automated quarantine gates for Model Training/RAG ingestion.
 
 ### Step 4: Store Plan
-- Save as `TRISUELLA-AIDLCA-docs/construction/plans/{unit-name}-nfr-requirements-plan.md`
+- Save as `framework/architecture/construction/plans/{unit-name}-nfr-requirements-plan.md`
 - Include all [Answer]: tags for user input
 
 ### Step 5: Collect and Analyze Answers
@@ -53,8 +53,8 @@ Determine non-functional requirements for the unit and make tech stack choices.
 - **Do not proceed until ALL ambiguities are resolved**
 
 ### Step 6: Generate NFR Requirements Artifacts
-- Create `TRISUELLA-AIDLCA-docs/construction/{unit-name}/nfr-requirements/nfr-requirements.md`
-- Create `TRISUELLA-AIDLCA-docs/construction/{unit-name}/nfr-requirements/tech-stack-decisions.md`
+- Create `framework/architecture/construction/{unit-name}/nfr-requirements/nfr-requirements.md`
+- Create `framework/architecture/construction/{unit-name}/nfr-requirements/tech-stack-decisions.md`
 
 ### Step 7: Present Completion Message
 - Present completion message in this structure:
@@ -75,7 +75,7 @@ Determine non-functional requirements for the unit and make tech stack choices.
 
 ```markdown
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
-> Please examine the NFR requirements at: `TRISUELLA-AIDLCA-docs/construction/[unit-name]/nfr-requirements/`
+> Please examine the NFR requirements at: `framework/architecture/construction/[unit-name]/nfr-requirements/`
 
 
 

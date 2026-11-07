@@ -90,7 +90,7 @@ Create a lightweight Data Flow Diagram (DFD) or system context diagram identifyi
 - **Data Stores**: Databases, caches, vector stores, file systems, model weights, embedding stores
 - **External Dependencies**: Third-party services, LLM providers, external APIs, CDNs, package registries
 
-Save the context diagram as `TRISUELLA-AIDLCA-docs/inception/threat-model/system-context.md`
+Save the context diagram as `framework/architecture/inception/threat-model/system-context.md`
 
 ---
 
@@ -123,7 +123,7 @@ Generate context-appropriate questions to fill gaps in threat modeling. Embed us
 - How are model weights stored, versioned, and access-controlled?
 - Is model inference exposed externally? Are there rate limits and input constraints?
 
-Save questions as `TRISUELLA-AIDLCA-docs/inception/threat-model/threat-model-questions.md`
+Save questions as `framework/architecture/inception/threat-model/threat-model-questions.md`
 
 ### ⛔ GATE: Await User Answers
 DO NOT proceed to Step 4 until all questions are answered and ambiguities resolved.
@@ -180,7 +180,7 @@ For each identified threat, assign a risk score using DREAD or a simplified scor
 
 ## Step 6: Generate Threat Model Document
 
-Create `TRISUELLA-AIDLCA-docs/inception/threat-model/threat-model.md`:
+Create `framework/architecture/inception/threat-model/threat-model.md`:
 
 ```markdown
 # Threat Model — [System/Component Name]
@@ -247,13 +247,13 @@ From the threat model, generate a set of concrete security requirements. These f
 - **Build and Test stage**: as security test cases
 - **SECURITY extension rules**: as enforcement baseline
 
-Save derived requirements as `TRISUELLA-AIDLCA-docs/inception/threat-model/security-requirements-from-threats.md`
+Save derived requirements as `framework/architecture/inception/threat-model/security-requirements-from-threats.md`
 
 ---
 
 ## Step 8: Update State Tracking
 
-Update `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md`:
+Update `framework/architecture/TRISUELLA-AIDLCA-state.md`:
 
 ```markdown
 ## Stage Progress
@@ -269,13 +269,13 @@ Update `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md`:
 
 ## Step 9: Log and Present Completion
 
-Log completion with timestamp in `TRISUELLA-AIDLCA-docs/audit.md`, then present:
+Log completion with timestamp in `framework/architecture/audit.md`, then present:
 
 ```markdown
 # 🛡️ Threat Modeling Complete
 
 > **📋 <u>**REVIEW REQUIRED:**</u>**
-> Please examine the threat model at: `TRISUELLA-AIDLCA-docs/inception/threat-model/threat-model.md`
+> Please examine the threat model at: `framework/architecture/inception/threat-model/threat-model.md`
 
 
 
@@ -289,4 +289,4 @@ Log completion with timestamp in `TRISUELLA-AIDLCA-docs/audit.md`, then present:
 ---
 ```
 
-Wait for explicit user approval before proceeding. Log the user's response in `TRISUELLA-AIDLCA-docs/audit.md`.
+Wait for explicit user approval before proceeding. Log the user's response in `framework/architecture/audit.md`.

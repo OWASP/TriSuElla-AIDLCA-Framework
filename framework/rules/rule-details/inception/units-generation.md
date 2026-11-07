@@ -27,9 +27,9 @@ This stage decomposes the system into manageable units of work through two integ
 
 ## Step 2: Include Mandatory Unit Artifacts in Plan
 **ALWAYS** include these mandatory artifacts in the unit plan:
-- [ ] Generate `TRISUELLA-AIDLCA-docs/inception/application-design/unit-of-work.md` with unit definitions and responsibilities
-- [ ] Generate `TRISUELLA-AIDLCA-docs/inception/application-design/unit-of-work-dependency.md` with dependency matrix
-- [ ] Generate `TRISUELLA-AIDLCA-docs/inception/application-design/unit-of-work-story-map.md` mapping stories to units
+- [ ] Generate `framework/architecture/inception/application-design/unit-of-work.md` with unit definitions and responsibilities
+- [ ] Generate `framework/architecture/inception/application-design/unit-of-work-dependency.md` with dependency matrix
+- [ ] Generate `framework/architecture/inception/application-design/unit-of-work-story-map.md` mapping stories to units
 - [ ] **Greenfield only**: Document code organization strategy in `unit-of-work.md` (see code-generation.md for structure patterns)
 - [ ] Validate unit boundaries and dependencies
 - [ ] Ensure all stories are assigned to units
@@ -50,7 +50,7 @@ This stage decomposes the system into manageable units of work through two integ
 - **Code Organization (Greenfield multi-unit only)** - Ask deployment model and directory structure preferences
 
 ## Step 4: Store UOW Plan
-- Save as `TRISUELLA-AIDLCA-docs/inception/plans/unit-of-work-plan.md`
+- Save as `framework/architecture/inception/plans/unit-of-work-plan.md`
 - Include all [Answer]: tags for user input
 - Ensure plan covers all aspects of system decomposition
 
@@ -83,7 +83,7 @@ If the analysis in step 7 reveals ANY ambiguous answers, you MUST:
   - "You mentioned 'depends on complexity' - how do you define complexity levels?"
 
 ## Step 9: Request Approval
-- Ask: "**Unit of work plan complete. Review the plan in TRISUELLA-AIDLCA-docs/inception/plans/unit-of-work-plan.md. Ready to proceed to generation?**"
+- Ask: "**Unit of work plan complete. Review the plan in framework/architecture/inception/plans/unit-of-work-plan.md. Ready to proceed to generation?**"
 - DO NOT PROCEED until user confirms
 
 ## Step 10: Log Approval
@@ -101,7 +101,7 @@ If the analysis in step 7 reveals ANY ambiguous answers, you MUST:
 # PART 2: GENERATION
 
 ## Step 12: Load Unit of Work Plan
-- [ ] Read the complete plan from `TRISUELLA-AIDLCA-docs/inception/plans/unit-of-work-plan.md`
+- [ ] Read the complete plan from `framework/architecture/inception/plans/unit-of-work-plan.md`
 - [ ] Identify the next uncompleted step (first [ ] checkbox)
 - [ ] Load the context and requirements for that step
 
@@ -113,7 +113,7 @@ If the analysis in step 7 reveals ANY ambiguous answers, you MUST:
 
 ## Step 14: Update Progress
 - [ ] Mark the completed step as [x] in the unit of work plan
-- [ ] Update `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md` current status
+- [ ] Update `framework/architecture/TRISUELLA-AIDLCA-state.md` current status
 - [ ] Save all generated artifacts
 
 ## Step 15: Continue or Complete
@@ -129,7 +129,7 @@ If the analysis in step 7 reveals ANY ambiguous answers, you MUST:
 [AI-generated summary of units and decomposition created in bullet points]
 
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
-> Please examine the units generation artifacts at: `TRISUELLA-AIDLCA-docs/inception/application-design/`
+> Please examine the units generation artifacts at: `framework/architecture/inception/application-design/`
 
 > **🚀 <u>**WHAT'S NEXT?**</u>**
 >
@@ -145,12 +145,12 @@ If the analysis in step 7 reveals ANY ambiguous answers, you MUST:
 - If user requests changes, update the units and repeat the approval process
 
 ## Step 18: Record Approval Response
-- Log the user's approval response with timestamp in `TRISUELLA-AIDLCA-docs/audit.md`
+- Log the user's approval response with timestamp in `framework/architecture/audit.md`
 - Include the exact user response text
 - Mark the approval status clearly
 
 ## Step 19: Update Progress
-- Mark Units Generation stage complete in `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md`
+- Mark Units Generation stage complete in `framework/architecture/TRISUELLA-AIDLCA-state.md`
 - Update the "Current Status" section
 - Prepare for transition to CONSTRUCTION PHASE
 

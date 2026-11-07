@@ -88,42 +88,42 @@ The model is based on the insight that AI systems don't exist in a vacuum; they 
 From the repository root:
 ```bash
 # Windows
-.\trisu.cmd init --target /path/to/my-repo
+.\solution\cli\trisu.cmd init --target /path/to/my-repo
 
 # Linux / macOS / Git Bash
-./trisu init --target /path/to/my-repo
+./solution/cli/trisu init --target /path/to/my-repo
 
-# Global CLI (via pip install -e tools/trisu-cli)
+# Global CLI (via pip install -e solution/cli)
 trisu init --target /path/to/my-repo
 ```
 This automatically scaffolds `.cursorrules`, `CLAUDE.md`, `.windsurfrules`, `.github/copilot-instructions.md`, `trisuella.config.yaml`, and the PR verification gate (`.github/workflows/trisuella-gate.yml`).
 
 ### Option B: Direct AI Assistant Instruction
 1.  **Activate**: Tell your AI assistant (Cursor, Claude, Copilot, Windsurf):
-    > *"Follow the TRISUELLA-AIDLCA v3.0 workflow defined in TRISUELLA-AIDLCA-rules/core-workflow.md"*
+    > *"Follow the TRISUELLA-AIDLCA v3.0 workflow defined in framework/rules/workflow/core-workflow.md"*
 2.  **Initialize**: Describe what you want to build. The framework handles the rest.
 3.  **Enforce**: All code generated is automatically audited against the 20-item **Security Review Checklist** and 338 consolidated invariants.
 
 ---
 
 ## 📚 Documentation & Key References
-*   📖 **[Master Rules & Checks Reference (338 Checks, 237 Rules)](../TRISUELLA_MASTER_RULES_AND_CHECKS.md)**
-*   🏛️ **[Unified Architecture Blueprint (9 Solution Layers)](../TRISUELLA-AIDLCA-docs/Unified-Trust-Risk-Compliance-Architecture.md)**
-*   🌐 **[Multi-Standard Crosswalk Matrix](../TRISUELLA-AIDLCA-docs/TriSuElla-Unified-Crosswalk-Matrix.md)**
-*   📘 **[Framework Usage Guide (v3.4.0)](../Usage-Guide.md)**
+*   📖 **[Master Rules & Checks Reference (338 Checks, 237 Rules)](TRISUELLA_MASTER_RULES_AND_CHECKS.md)**
+*   🏛️ **[Unified Architecture Blueprint (9 Solution Layers)](../architecture/Unified-Trust-Risk-Compliance-Architecture.md)**
+*   🌐 **[Multi-Standard Crosswalk Matrix](../architecture/TriSuElla-Unified-Crosswalk-Matrix.md)**
+*   📘 **[Framework Usage Guide (v3.4.0)](../../solution/docs/Usage-Guide.md)**
 *   📜 **[Complete Rule Directory & Detailed Guide](FULL_README.md)**
 *   🏛️ **[Framework Charter & Philosophy](CHARTER.md)**
-*   🛡️ **[Zero Trust Code (TRISU-ZTC)](TRISUELLA-AIDLCA-rule-details/extensions/security/zero-trust/zero-trust-code.md)**
-*   📦 **[Open Source Security & Supply Chain (TRISU-OSS)](TRISUELLA-AIDLCA-rule-details/extensions/security/oss/open-source-security.md)**
-*   ☁️ **[Multi-Cloud CSPM Architecture (TRISU-CSPM)](TRISUELLA-AIDLCA-rule-details/extensions/security/cloud-security/cloud-security.md)**
-*   🔌 **[Model Context Protocol Security (TRISU-MCP)](TRISUELLA-AIDLCA-rule-details/extensions/security/ai-agentic/mcp-security.md)**
-*   🇪🇺 **[EU AI Act High-Risk Compliance (TRISU-EUAI)](TRISUELLA-AIDLCA-rule-details/extensions/compliance/compliance-eu-ai-act.md)**
-*   🔑 **[Agentic Identity & Delegation (TRISU-AIAM)](TRISUELLA-AIDLCA-rule-details/extensions/security/zero-trust/agentic-iam.md)**
-*   🏢 **[SOC 2 & ISO 27001 ISMS Compliance](TRISUELLA-AIDLCA-rule-details/extensions/compliance/compliance-soc2-iso27001.md)**
-*   🤖 **[NIST AI RMF 1.0 & GenAI Profile](TRISUELLA-AIDLCA-rule-details/extensions/compliance/compliance-nist-ai-rmf.md)**
-*   🎯 **[Full-Spectrum AppSec Suite (API, Mobile, Web)](TRISUELLA-AIDLCA-rule-details/extensions/security/baseline/owasp-full-spectrum-appsec.md)**
-*   🛠️ **[Validator CLI Manual (`trisu`)](../tools/trisu-cli/README.md)**
-*   🤝 **[Multi-Agent System & Protocol (TRISUELLA-AIDLCAa)](../TRISUELLA-AIDLCAa/README.md)**
+*   🛡️ **[Zero Trust Code (TRISU-ZTC)](rule-details/extensions/security/zero-trust/zero-trust-code.md)**
+*   📦 **[Open Source Security & Supply Chain (TRISU-OSS)](rule-details/extensions/security/oss/open-source-security.md)**
+*   ☁️ **[Multi-Cloud CSPM Architecture (TRISU-CSPM)](rule-details/extensions/security/cloud-security/cloud-security.md)**
+*   🔌 **[Model Context Protocol Security (TRISU-MCP)](rule-details/extensions/security/ai-agentic/mcp-security.md)**
+*   🇪🇺 **[EU AI Act High-Risk Compliance (TRISU-EUAI)](rule-details/extensions/compliance/compliance-eu-ai-act.md)**
+*   🔑 **[Agentic Identity & Delegation (TRISU-AIAM)](rule-details/extensions/security/zero-trust/agentic-iam.md)**
+*   🏢 **[SOC 2 & ISO 27001 ISMS Compliance](rule-details/extensions/compliance/compliance-soc2-iso27001.md)**
+*   🤖 **[NIST AI RMF 1.0 & GenAI Profile](rule-details/extensions/compliance/compliance-nist-ai-rmf.md)**
+*   🎯 **[Full-Spectrum AppSec Suite (API, Mobile, Web)](rule-details/extensions/security/baseline/owasp-full-spectrum-appsec.md)**
+*   🛠️ **[Validator CLI Manual (`trisu`)](../../solution/cli/README.md)**
+*   🤝 **[Multi-Agent System & Protocol (solution/agents)](../../solution/agents/README.md)**
 
 ---
 

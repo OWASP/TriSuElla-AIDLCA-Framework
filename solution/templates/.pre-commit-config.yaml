@@ -6,7 +6,7 @@ repos:
     hooks:
       - id: trisuella-audit
         name: TriSuElla Blocking Gate Audit
-        entry: python tools/trisu-cli/trisu_validator.py audit
+        entry: python solution/cli/trisu_validator.py audit
         language: system
         pass_filenames: false
         always_run: true

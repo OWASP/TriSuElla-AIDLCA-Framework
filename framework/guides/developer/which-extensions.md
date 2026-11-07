@@ -140,7 +140,7 @@ The extensions add depth. The core is always the floor.
 
 ## How to Load Extensions
 
-**Claude Project**: Upload the extension `.md` files as Project Knowledge files alongside your core rules. Each extension lives in `TRISUELLA-AIDLCA-rule-details/extensions/`.
+**Claude Project**: Upload the extension `.md` files as Project Knowledge files alongside your core rules. Each extension lives in `framework/rules/rule-details/extensions/`.
 
 **Cursor / Copilot**: Reference the extension files from your `.cursorrules` or `.github/copilot-instructions.md`.
 

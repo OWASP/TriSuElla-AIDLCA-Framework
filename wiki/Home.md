@@ -3,7 +3,7 @@
 > **Software Version**: 3.4.0 | **Framework Version**: 3.4.0 | **Status**: Institutionalized (Production-Ready, DevSecOps-Ready & CI-Verified)  
 > **Consolidated Invariants**: 338 Checks | **Rules**: 237 | **Domain Families**: 33  
 > **Author**: [Bhaskar Puppala (PATEL)](https://www.linkedin.com/in/bhaskerkpatel/)  
-> **Repository**: [OWASP/OWASP-TriSuElla-AIDLCA-Framework](https://github.com/OWASP/OWASP-TriSuElla-AIDLCA-Framework)
+> **Repository**: [OWASP/TriSuElla-AIDLCA-Framework](https://github.com/OWASP/TriSuElla-AIDLCA-Framework)
 
 ---
 
@@ -48,7 +48,7 @@ graph LR
 
 ## 🖼️ Official Platform Architecture Blueprint
 
-![TriSuElla Platform Architecture](https://raw.githubusercontent.com/OWASP/OWASP-TriSuElla-AIDLCA-Framework/main/Ref-Images/OWASP-TriSuElla-Architecture-v3.4-LATEST.jpg)
+![TriSuElla Platform Architecture](https://raw.githubusercontent.com/OWASP/TriSuElla-AIDLCA-Framework/main/framework/architecture/images/OWASP-TriSuElla-Architecture-v3.4-LATEST.jpg)
 
 ---
 
@@ -118,5 +118,5 @@ trisu init --target ./my-project
 * 🔱 **[The TRI-SU-ELLA Engine Triad](TRI-SU-ELLA-Engine-Triad)**: How Trust, Security, and Continuous Evaluation operate.
 * 🛠️ **[CLI Tooling & DevSecOps Guide](CLI-Tooling-and-DevSecOps)**: Installation, command reference, and CI/CD integration.
 * 🌐 **[Multi-Standard Compliance Crosswalk](Multi-Standard-Compliance-Crosswalk)**: SOC 2, ISO 27001, NIST AI RMF, and EU AI Act mappings.
-* 🤖 **[TRISUELLA-AIDLCAa Multi-Agent System](Multi-Agent-Lifecycle-Architecture)**: Autonomous 8-stage agent pipeline and ZTP protocol.
+* 🤖 **[solution/agents Multi-Agent System](Multi-Agent-Lifecycle-Architecture)**: Autonomous 8-stage agent pipeline and ZTP protocol.
 * 🚀 **[Quickstart & Scaffolding](Quickstart-and-Scaffolding)**: Getting started in under 30 seconds.

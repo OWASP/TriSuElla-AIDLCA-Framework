@@ -101,146 +101,30 @@ This framework is **platform-agnostic** — copy it once, use it with any AI ass
 ## 📂 Complete Repository & Framework Directory Structure
 
 ```
-OWASP-TriSuElla-AIDLCA-FrameWork/
-├── README.md                                    ← Main project entrypoint & quickstart (v3.4.0)
-├── Usage-Guide.md                               ← Turnkey setup & step-by-step usage guide
-├── TRISUELLA_MASTER_RULES_AND_CHECKS.md         ← Unified master rulebook (338 checks, 237 rules across 33 domains)
-├── ai-bom.json                                  ← Machine-readable CycloneDX AI v1.6 BoM
-├── trisuella.config.yaml                        ← Declarative policy & CSPM manifest
-├── CLAUDE.md & .cursorrules                     ← Workspace rules for Claude Code & Cursor
-├── trisu.cmd & trisu                            ← Turnkey CLI wrappers for Windows & POSIX
-├── LICENSE                                      ← Open-source license
+TriSuElla-AIDLCA-Framework/
+├── README.md                  ← router: pick the Framework path or the Solution path
+├── COMMERCIAL.md  TRADEMARKS.md  MIGRATION.md  NOTICE  LICENSE  CONTRIBUTING.md
+├── CLAUDE.md  .cursorrules    ← AI-assistant directives for working on this repo
 │
-├── templates/                                   ← Drop-in developer configs & CI/CD workflows
-│   ├── .cursorrules                             ← Cursor IDE rules template
-│   ├── CLAUDE.md                                ← Claude Code instructions template
-│   ├── .windsurfrules                           ← Windsurf rules template
-│   ├── copilot-instructions.md                  ← GitHub Copilot instructions template
-│   ├── trisuella.config.yaml                    ← Declarative policy manifest template
-│   ├── .pre-commit-config.yaml                  ← Git pre-commit hook template
-│   └── .github/workflows/trisuella-gate.yml     ← GitHub Actions CI/CD blocking gate
+├── framework/                 ← THE WHAT: documents only, no executable code
+│   ├── README.md
+│   ├── rules/                 ← master rulebook, charter, workflow/, rule-details/, ENFORCEMENT-MAP.md
+│   ├── architecture/          ← 9 layers, crosswalks, state tracker, images/
+│   ├── guides/                ← developer/ guides, prompts/ library
+│   └── reference-data/        ← source regulatory material (RBI, ISO 42001, CSA AICM ...)
 │
-├── tools/                                       ← Governance tooling & runtime gatekeepers
-│   ├── trisu-cli/                               ← Policy gatekeeper CLI engine (v3.4.0)
-│   │   ├── trisu_validator.py                   ← Zero-dependency CLI (check, audit, oss, init, bom, rules, matrix)
-│   │   ├── pyproject.toml & setup.py            ← Pip packaging for global 'trisu' command
-│   │   └── README.md                            ← CLI manual & multi-CI integration guide
-│   └── sisu-ui/                                 ← Sisu Nexus visual compliance dashboard
-│       ├── index.html                           ← Web UI dashboard interface
-│       ├── sisu-ui-design-spec.md               ← UI/UX architecture & metrics specification
-│       └── sample-data/                         ← Sample governance & compliance dataset
+├── solution/                  ← THE HOW: software that enforces the framework
+│   ├── README.md
+│   ├── cli/                   ← `trisu` CLI, trisuella.config.yaml, tests/
+│   ├── ui/                    ← Sisu Nexus dashboard
+│   ├── agents/                ← AIDLCAa 8-stage multi-agent system
+│   ├── templates/             ← IDE rules, pre-commit hook, CI gate (copied by `trisu init`)
+│   ├── ai-bom/                ← declared CycloneDX AI-BoM
+│   └── docs/                  ← Usage-Guide.md
 │
-├── TRISUELLA-AIDLCAa/                           ← 8-Stage Autonomous Multi-Agent Governance
-│   └── README.md                                ← Zero-Trust Protocol (ZTP), envelopes & Dual-Key HITL
-│
-├── TRISUELLA-AIDLCA-docs/                       ← Operational state tracking, architecture & crosswalk matrices
-│   ├── Unified-Trust-Risk-Compliance-Architecture.md ← 9 Solution Layers & TRI-SU-ELLA Engine Architecture
-│   ├── TriSuElla-Unified-Crosswalk-Matrix.md          ← Multi-standard crosswalk matrix
-│   ├── TRISUELLA-AIDLCA-state.md                ← Runtime workflow state & extension tracking
-│   └── AICM-AIDLCA-Crosswalk.md                 ← CSA AICM v1.0.3 to TriSuElla crosswalk
-│
-├── Data-Source/                                 ← Foundational regulatory baselines & standards
-│   ├── AICMv1.0.3+AI_CAIQv1.0.2 bundle          ← CSA AI Control Matrix spreadsheets & guides
-│   ├── Architecting_Cyber_Resilience_BFSI       ← RBI Cyber Resilience guidelines & manuscript
-│   ├── FREE-AI_Committee_Report                 ← Responsible AI & ethical governance report
-│   └── INDIAN_CYBERSECURITY                     ← CERT-In & statutory compliance references
-│
-└── TRISUELLA-AIDLCA-Rules/                      ← Core specifications, workflows & prompts
-    ├── README.md                                ← Philosophy, severity scale & quick summary
-    ├── CHARTER.md                               ← Strategic mission, foundational pillars & charter
-    ├── FULL_README.md                           ← Comprehensive manual, CSPM crosswalk & changelog
-    │
-    ├── TRISUELLA-AIDLCA-rules/
-    │   └── core-workflow.md                     ← Master TRISUELLA-AIDLCA workflow (all 3 phases)
-    │
-    ├── TRISUELLA-AIDLCA-rule-details/           ← Detailed rules per phase and extension
-    │   │
-    │   ├── common/                              ← Loaded at every workflow start (11 files)
-    │   │   ├── process-overview.md              ← Full workflow diagram + stage descriptions
-    │   │   ├── depth-levels.md                  ← Minimal / Standard / Comprehensive depth guide
-    │   │   ├── question-format-guide.md         ← How to format [Answer]: tag questions
-    │   │   ├── content-validation.md            ← Mermaid/ASCII/content validation rules
-    │   │   ├── session-continuity.md            ← How to resume an interrupted workflow
-    │   │   ├── error-handling.md                ← Error handling guidance for the AI
-    │   │   ├── overconfidence-prevention.md     ← Rules to prevent AI from making bad assumptions
-    │   │   ├── terminology.md                   ← TRISUELLA-AIDLCA term definitions
-    │   │   ├── welcome-message.md               ← Displayed once at workflow start
-    │   │   ├── workflow-changes.md              ← Rules for mid-workflow change requests
-    │   │   └── ascii-diagram-standards.md       ← ASCII diagram formatting standards
-    │   │
-    │   ├── inception/                           ← Phase 1: Plan, model threats, design architecture
-    │   │   ├── workspace-detection.md           ← Detect greenfield vs brownfield, scan workspace
-    │   │   ├── reverse-engineering.md           ← Analyse existing codebase (brownfield only)
-    │   │   ├── requirements-analysis.md         ← Gather functional + non-functional requirements
-    │   │   ├── threat-modeling.md               ← STRIDE + STRIDEAI threat modeling
-    │   │   ├── user-stories.md                  ← Generate user stories and personas
-    │   │   ├── workflow-planning.md             ← Build the execution plan for Construction
-    │   │   ├── application-design.md            ← High-level component + service layer design
-    │   │   └── units-generation.md              ← Decompose into units of work
-    │   │
-    │   ├── construction/                        ← Phase 2: Design, generate, test per unit
-    │   │   ├── functional-design.md             ← Business logic + domain model design per unit
-    │   │   ├── nfr-requirements.md              ← Non-functional requirements + tech stack decisions
-    │   │   ├── nfr-design.md                    ← NFR patterns and logical components per unit
-    │   │   ├── infrastructure-design.md         ← Map components to cloud/infra + Secrets by Design
-    │   │   ├── code-generation.md               ← Plan + generate code + 20-item Security Checklist
-    │   │   └── build-and-test.md                ← SAST, DAST, secrets, container, AI tests
-    │   │
-    │   ├── operations/                          ← Phase 3: Deploy, observe, respond
-    │   │   └── operations.md                    ← CI/CD gates, deployment, rollback, observability
-    │   │
-    │   └── extensions/                          ← Modular opt-in extensions
-    │       │
-    │       ├── security/                        ← Core technical security extensions
-    │       │   ├── baseline/                    ← 15 SECURITY rules (OWASP Top 10 2026)
-    │       │   │   ├── security-baseline.md
-    │       │   │   └── security-baseline.opt-in.md
-    │       │   ├── ai-agentic/                  ← 11 AI-SECURITY rules (OWASP LLM Top 10 2025)
-    │       │   │   ├── ai-agentic-security.md
-    │       │   │   └── ai-agentic-security.opt-in.md
-    │       │   ├── cloud-security/              ← 24 CLOUD/CSPM rules (AWS/Azure/GCP/Alibaba/OCI)
-    │       │   │   ├── cloud-security.md
-    │       │   │   └── cloud-security.opt-in.md
-    │       │   ├── infra-security/              ← 16 INFRA-SEC rules (CIS Controls v8, NIST, ISO)
-    │       │   │   ├── infra-security.md
-    │       │   │   └── infra-security.opt-in.md
-    │       │   ├── privacy-secure-design/       ← 10 rules across Privacy/Secure/Safety by Design
-    │       │   │   ├── privacy-secure-design.md
-    │       │   │   └── privacy-secure-design.opt-in.md
-    │       │   ├── sensitive-data/              ← 10 SENS rules (DPDPA, GDPR, HIPAA, L0-L4)
-    │       │   │   ├── sensitive-data-security.md
-    │       │   │   └── sensitive-data-security.opt-in.md
-    │       │   └── zero-trust/                  ← 11 ZT rules (CISA ZT Pillars, NIST SP 800-207)
-    │       │       ├── zero-trust.md
-    │       │       └── zero-trust.opt-in.md
-    │       │
-    │       ├── compliance/                      ← Regulatory compliance extensions
-    │       │   ├── compliance-mapping.md        ← DPDPA (8 rules), PCI-DSS v4, HIPAA, GDPR, SOC 2
-    │       │   ├── compliance-mapping.opt-in.md
-    │       │   ├── compliance-india-bfsi.md     ← 7 India BFSI mandates (CERT-In 6h, 5y logs)
-    │       │   └── ai-dlca/                     ← AI-DLCA continuous lifecycle governance
-    │       │       ├── ai-dlca.md
-    │       │       └── ai-dlca.opt-in.md
-    │       │
-    │       └── testing/                         ← Advanced verification extensions
-    │           └── property-based/              ← 10 PBT rules (hypothesis, fast-check, proptest)
-    │               ├── property-based-testing.md
-    │               └── property-based-testing.opt-in.md
-    │
-    ├── prompts/                                 ← Turnkey prompt library across all stages
-    │   ├── README.md                            ← Index of all prompt suites (P, B, T, A, C)
-    │   ├── planning/                            ← Requirements & STRIDE threat model prompts
-    │   ├── build/                               ← Secure code generation & review prompts
-    │   ├── test/                                ← Security test & prompt injection prompts
-    │   ├── ai-agents/                           ← AI/agentic feature design & MCP review prompts
-    │   └── compliance/                          ← DPDPA, GDPR, HIPAA, PCI compliance prompts
-    │
-    └── docs/                                    ← Developer and architectural documentation
-        ├── faq.md                               ← 25+ frequently asked questions
-        ├── benefits.md                          ← Benefits by role & 4 real-world scenarios
-        ├── vibe-coding-guide.md                 ← Fast-track guide for vibe coders
-        ├── which-extensions.md                  ← Decision tree for extension selection
-        └── adr-template.md                      ← Architecture Decision Record template
+├── wiki/                      ← GitHub Wiki source (flat; published by .github/scripts/publish-wiki.*)
+├── assets/                    ← images
+└── .github/                   ← CI gate, CodeQL, wiki publishing scripts
 ```
 
 ---
@@ -253,14 +137,14 @@ Run the zero-dependency TriSuElla validator CLI to scaffold drop-in rules, CI ga
 
 ```bash
 # Option 1: Turnkey root wrappers (zero install)
-.\trisu.cmd init --target /path/to/my-repo   # Windows
-./trisu init --target /path/to/my-repo       # Linux / macOS
+.\solution\cli\trisu.cmd init --target /path/to/my-repo   # Windows
+./solution/cli/trisu init --target /path/to/my-repo       # Linux / macOS
 
 # Option 2: Global pip CLI
 trisu init --target /path/to/my-repo
 
 # Option 3: Direct python execution
-python tools/trisu-cli/trisu_validator.py init --target /path/to/my-repo
+python solution/cli/trisu_validator.py init --target /path/to/my-repo
 ```
 
 ### Method B: Manual Drop-In Integration
@@ -269,9 +153,9 @@ python tools/trisu-cli/trisu_validator.py init --target /path/to/my-repo
 
 ```bash
 # From your project root
-cp -r TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rule-details /path/to/my-repo/.TRISUELLA-AIDLCA-rule-details
+cp -r framework/rules/rule-details /path/to/my-repo/.TRISUELLA-AIDLCA-rule-details
 mkdir -p /path/to/my-repo/.TRISUELLA-AIDLCA-rules
-cp TRISUELLA-AIDLCA-Rules/TRISUELLA-AIDLCA-rules/core-workflow.md /path/to/my-repo/.TRISUELLA-AIDLCA-rules/core-workflow.md
+cp framework/rules/workflow/core-workflow.md /path/to/my-repo/.TRISUELLA-AIDLCA-rules/core-workflow.md
 ```
 
 #### Step 2: Activate in your AI assistant / IDE
@@ -307,7 +191,7 @@ Always follow the TRISUELLA-AIDLCA workflow defined in .TRISUELLA-AIDLCA-rules/c
 
 Open a new conversation with your AI assistant and describe what you want to build. The workflow kicks in automatically.
 
-Not sure which extensions to add? See [`docs/which-extensions.md`](docs/which-extensions.md) — answer 8 questions and get your exact combination.
+Not sure which extensions to add? See [`docs/which-extensions.md`](../guides/developer/which-extensions.md) — answer 8 questions and get your exact combination.
 
 ---
 
@@ -445,8 +329,8 @@ The **TRISU-CSPM** standard establishes comprehensive, automated Cloud Security 
 | **Privacy by Default** | Maximum privacy protection in every default configuration — analytics, tracking, AI training all off by default |
 | **Safety by Design** | Misuse scenarios are documented; AI systems have scope limits, kill switches, and human oversight gates |
 | **Zero Trust Native** | Every agent action authenticated, authorized, and audited; no implicit trust based on network location |
-| **Complete Audit Trail** | Every user input, AI response, and approval logged to `TRISUELLA-AIDLCA-docs/audit.md` with timestamps |
-| **Progress Tracking** | All workflow state in `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md` — resume any session from where it left off |
+| **Complete Audit Trail** | Every user input, AI response, and approval logged to `framework/architecture/audit.md` with timestamps |
+| **Progress Tracking** | All workflow state in `framework/architecture/TRISUELLA-AIDLCA-state.md` — resume any session from where it left off |
 | **Platform Agnostic** | Works with any AI assistant, any OS, any cloud provider |
 
 ---
@@ -469,7 +353,7 @@ You do not need to understand every rule to benefit from this framework. The wor
 - Build and test instructions generated for your specific tech stack
 - A production readiness checklist before you ship
 
-**See the dedicated guide**: [`docs/vibe-coding-guide.md`](docs/vibe-coding-guide.md)
+**See the dedicated guide**: [`docs/vibe-coding-guide.md`](../guides/developer/vibe-coding-guide.md)
 
 ---
 
@@ -480,7 +364,7 @@ When the TRISUELLA-AIDLCA workflow runs on your project, it creates a structured
 ```
 your-project/
 ├── [your application code]
-└── TRISUELLA-AIDLCA-docs/
+└── framework/architecture/
     ├── TRISUELLA-AIDLCA-state.md                     ← Current workflow state and extension config
     ├── audit.md                           ← Complete interaction log with timestamps
     ├── inception/
@@ -518,12 +402,12 @@ These artifacts double as compliance evidence: `audit.md` supports SOC 2 change 
 
 | Document | What It Covers |
 |---|---|
-| [`Usage-Guide.md`](../Usage-Guide.md) | Complete master integration & usage guide — CLI reference, setup for Cursor, Copilot, Claude, TRISUELLA-AIDLCAa agents; phase walkthrough; rule inventory |
-| [`docs/vibe-coding-guide.md`](docs/vibe-coding-guide.md) | Streamlined guide for vibe coders — mindset, Claude Project setup, iterative workflow, 7-day SaaS example |
-| [`docs/faq.md`](docs/faq.md) | 25+ frequently asked questions — general, setup, rules enforcement, AI-specific, vibe coding |
-| [`docs/benefits.md`](docs/benefits.md) | Benefits by role (vibe coder / developer / CTO), by phase, comparison with alternatives, 4 real-world scenarios |
-| [`docs/which-extensions.md`](docs/which-extensions.md) | Decision tree — answer 8 questions, get your exact extension combination + project-type reference table |
-| [`docs/adr-template.md`](docs/adr-template.md) | Architecture Decision Record template with TRISUELLA-AIDLCA-specific fields: security impact, compliance impact, agent interaction impact |
+| [`Usage-Guide.md`](../../solution/docs/Usage-Guide.md) | Complete master integration & usage guide — CLI reference, setup for Cursor, Copilot, Claude, solution/agents agents; phase walkthrough; rule inventory |
+| [`docs/vibe-coding-guide.md`](../guides/developer/vibe-coding-guide.md) | Streamlined guide for vibe coders — mindset, Claude Project setup, iterative workflow, 7-day SaaS example |
+| [`docs/faq.md`](../guides/developer/faq.md) | 25+ frequently asked questions — general, setup, rules enforcement, AI-specific, vibe coding |
+| [`docs/benefits.md`](../guides/developer/benefits.md) | Benefits by role (vibe coder / developer / CTO), by phase, comparison with alternatives, 4 real-world scenarios |
+| [`docs/which-extensions.md`](../guides/developer/which-extensions.md) | Decision tree — answer 8 questions, get your exact extension combination + project-type reference table |
+| [`docs/adr-template.md`](../guides/developer/adr-template.md) | Architecture Decision Record template with TRISUELLA-AIDLCA-specific fields: security impact, compliance impact, agent interaction impact |
 
 ## 🧰 Prompt Template Library
 
@@ -531,11 +415,11 @@ Ready-to-use prompts for every stage of the TRISUELLA-AIDLCA workflow. Copy, fil
 
 | File | Prompts |
 |---|---|
-| [`prompts/planning/requirements-and-threat-model.md`](prompts/planning/requirements-and-threat-model.md) | Project kickoff, requirements deep dive, STRIDE threat model, user stories with security ACs, architecture security review |
+| [`prompts/planning/requirements-and-threat-model.md`](../guides/prompts/planning/requirements-and-threat-model.md) | Project kickoff, requirements deep dive, STRIDE threat model, user stories with security ACs, architecture security review |
 | [`prompts/build/secure-code-generation.md`](prompts/build/secure-code-generation.md) | Secure API endpoint, security code review, secure Dockerfile, secure DB schema, refactor for security, auth implementation |
-| [`prompts/test/security-testing.md`](prompts/test/security-testing.md) | API security tests, prompt injection suite, dependency scan setup, secret scan setup, AI model evaluation, infra security checklist |
-| [`prompts/ai-agents/ai-agent-security-prompts.md`](prompts/ai-agents/ai-agent-security-prompts.md) | LLM feature design, multi-agent system design, RAG security, LLM output validation, prompt template review, MCP server review |
-| [`prompts/compliance/compliance-prompts.md`](prompts/compliance/compliance-prompts.md) | GDPR checklist, DPDPA compliance check, HIPAA gap assessment, PCI-DSS scoping, data subject rights workflow |
+| [`prompts/test/security-testing.md`](../guides/prompts/test/security-testing.md) | API security tests, prompt injection suite, dependency scan setup, secret scan setup, AI model evaluation, infra security checklist |
+| [`prompts/ai-agents/ai-agent-security-prompts.md`](../guides/prompts/ai-agents/ai-agent-security-prompts.md) | LLM feature design, multi-agent system design, RAG security, LLM output validation, prompt template review, MCP server review |
+| [`prompts/compliance/compliance-prompts.md`](../guides/prompts/compliance/compliance-prompts.md) | GDPR checklist, DPDPA compliance check, HIPAA gap assessment, PCI-DSS scoping, data subject rights workflow |
 
 ---
 
@@ -548,7 +432,7 @@ Ready-to-use prompts for every stage of the TRISUELLA-AIDLCA workflow. Copy, fil
 - **Core Enterprise GRC Extension (`TRISU-SOC2`/`ISMS`)** — Codified 8 rules covering SOC 2 Type II trust criteria (`TRISU-SOC2-01..04`) and ISO/IEC 27001:2022 ISMS Annex A controls (`TRISU-ISMS-01..04`).
 - **AI Risk Management Extension (`TRISU-AIRMF`)** — Codified 6 rules covering NIST AI RMF 1.0 (GOVERN, MAP, MEASURE, MANAGE), GenAI Profile (NIST.IR.8596), and continuous red teaming.
 - **Full-Spectrum AppSec Suite (`TRISU-API`/`MOB`/`WEB`)** — Codified 11 rules covering OWASP API Security Top 10 (`TRISU-API-01..05`), Mobile Top 10 (`TRISU-MOB-01..03`), and Web ASVS v4.0 (`TRISU-WEB-01..03`).
-- **Unified Crosswalk Matrix & Architecture Blueprint** — Published comprehensive architecture blueprints and multi-standard crosswalk matrices in `TRISUELLA-AIDLCA-docs/`.
+- **Unified Crosswalk Matrix & Architecture Blueprint** — Published comprehensive architecture blueprints and multi-standard crosswalk matrices in `framework/architecture/`.
 - **Automated CLI Matrix Inspection (`trisu matrix`)** — Added terminal command visualizing the 9 solution layers and TRI-SU-ELLA engine crosswalks.
 - **Master Rulebook Inventory** — Recalibrated full master rules specification to **338 consolidated checks** across **33 domains** and **237 unique rules**.
 
@@ -560,7 +444,7 @@ Ready-to-use prompts for every stage of the TRISUELLA-AIDLCA workflow. Copy, fil
 
 ### v3.2.0 (2026-09-12) - Shadow AI Governance & AI-BOM Reconciliation
 - **Shadow AI & Model Discovery Extension (`TRISU-SHADOW-01..06`)** — Governed undeclared model invocations, supplier whitelisting, Enterprise GenAI Gateway bypass detection, unapproved deployment prevention, prompt egress sanitization, and continuous shadow discovery across 26 security domains (204 unique rules, 305 checks).
-- **Automated AST Shadow AI Scanner Engine (`trisu shadow`)** — Integrated Python AST and static regex scanner into the zero-dependency CLI (`tools/trisu-cli`) and wired shadow auditing into `audit` and `oss` gates with SARIF 2.1.0 reporting.
+- **Automated AST Shadow AI Scanner Engine (`trisu shadow`)** — Integrated Python AST and static regex scanner into the zero-dependency CLI (`solution/cli`) and wired shadow auditing into `audit` and `oss` gates with SARIF 2.1.0 reporting.
 - **Enhanced CycloneDX AI v1.6 AI-BOM Schema** — Added model reconciliation properties (`sanctioned_status`, `approval_ref`) and updated master inventory to 305 checks across 26 domains and 204 unique rules.
 
 ### v3.0.1 (2026-09-12) - Production CI/CD Gate Verification & Turnkey Patch
@@ -571,7 +455,7 @@ Ready-to-use prompts for every stage of the TRISUELLA-AIDLCA workflow. Copy, fil
 ### v3.0 (2026-09-12) - Institutionalized Release
 - **Zero Trust Code (ZTC) Extension (`TRISU-ZTC-01..08`)** — Enforced 8 in-code security invariants: explicit boundary validation, scoped object authorization, zero ambient credentials, deterministic fail-closed, banned dynamic deserialization, in-code audit telemetry, prohibited shell execution (`shell=True`), and agent tool confinement with mandatory HITL approval.
 - **Open Source Security & Supply Chain (OSS) Extension (`TRISU-OSS-01..06`)** — Governed direct and transitive dependencies, deterministic lockfile pinning, build-time integrity hashing, copyleft license contamination checks, typosquatting defense, and CycloneDX SBOM/AI-BoM attestation.
-- **Turnkey CLI & Packaging (`tools/trisu-cli`)** — Upgraded `trisu_validator.py` to v3.0 with AST-based static scanning, root discovery, domain breakdowns, `trisu oss` supply chain auditor, root convenience wrappers (`trisu.cmd`, `trisu`), and pip packaging (`pyproject.toml`, `setup.py`) for global `trisu` command execution.
+- **Turnkey CLI & Packaging (`solution/cli`)** — Upgraded `trisu_validator.py` to v3.0 with AST-based static scanning, root discovery, domain breakdowns, `trisu oss` supply chain auditor, root convenience wrappers (`trisu.cmd`, `trisu`), and pip packaging (`pyproject.toml`, `setup.py`) for global `trisu` command execution.
 - **Unified Master Rulebook (299 Checks, 198 Unique Rules)** — Recalibrated full master rules specification across 25 security domains.
 
 ### v2.5 (2026-04-01)
@@ -581,16 +465,16 @@ Ready-to-use prompts for every stage of the TRISUELLA-AIDLCA workflow. Copy, fil
   - `TRISU-CSPM-09` to `TRISU-CSPM-14`: Kubernetes Security Posture Management (**KSPM** - EKS/AKS/GKE/ACK/OKE), Database & Data Store Posture (**DSPM** - RDS/Cosmos/Cloud SQL/PolarDB/Autonomous DB), Compute & AI/ML Workload Posture (**AI-CSPM / CWPP** - IMDSv2, SageMaker/Azure OpenAI/Vertex/PAI/GenAI), Cloud Infrastructure Entitlements (**CIEM** - dormant credential revocation & PCI < 15), Cloud Edge WAF & Anti-DDoS Ingress, and Shift-Left Infrastructure-as-Code (**IaC**) pre-flight scanning.
   - Comprehensive **14-Domain Technical Crosswalk Matrix** providing exact operational parity across all 5 major CSPs.
 - **Three Pillars & 3-Layer Risk Model** — Formalized SISU, TILLIT, and DUGNAD with the Cyber Residual Risk Floor (70%/20%/10% loss distribution).
-- **Automated Tooling (`tools/trisu-cli`)** — Implemented zero-dependency Python CLI (`trisu_validator.py`):
+- **Automated Tooling (`solution/cli`)** — Implemented zero-dependency Python CLI (`trisu_validator.py`):
   - `init`: Instant project scaffolding of templates, state tracking, and CI gates.
   - `check`: Automated structural artifact verification.
   - `audit`: Blocking security checks, secret scanning, and native **OASIS SARIF 2.1.0** export for GitHub Code Scanning.
   - `bom`: Automated CycloneDX AI v1.6 AI-BoM generator.
   - `rules`: Rule ID index integrity validation (184 unique TRISU-* identifiers).
-- **Developer Drop-in Templates (`templates/`)** — Created ready-to-use configurations: `.cursorrules`, `CLAUDE.md`, `.windsurfrules`, `copilot-instructions.md`, `trisuella.config.yaml` (with granular `cspm` and `posture_domains` blocks), and `.pre-commit-config.yaml`.
+- **Developer Drop-in Templates (`solution/templates/`)** — Created ready-to-use configurations: `.cursorrules`, `CLAUDE.md`, `.windsurfrules`, `copilot-instructions.md`, `trisuella.config.yaml` (with granular `cspm` and `posture_domains` blocks), and `.pre-commit-config.yaml`.
 - **CI/CD Enforcement Gates** — Added automated GitHub Actions workflow (`.github/workflows/trisuella-gate.yml`) to enforce blocking `[CRITICAL]` checks on pull requests.
-- **Multi-Agent Architecture (`TRISUELLA-AIDLCAa`)** — Published formal 8-agent zero-trust autonomous development taxonomy, ZTP message envelope, and Dual-Key HITL gates.
-- **Tools Promotion** — Promoted SISU-UI governance dashboard to `tools/sisu-ui/` and structured sample data into `tools/sisu-ui/sample-data/`.
+- **Multi-Agent Architecture (`solution/agents`)** — Published formal 8-agent zero-trust autonomous development taxonomy, ZTP message envelope, and Dual-Key HITL gates.
+- **Tools Promotion** — Promoted SISU-UI governance dashboard to `solution/ui/` and structured sample data into `solution/ui/sample-data/`.
 
 ### v2.1 (2026-03-30)
 
@@ -636,7 +520,7 @@ Original TRISUELLA-AIDLCA rules kit, made platform-independent.
 3. **Agentic Identity & Token Delegation (`TRISU-AIAM-01..05`)** — COMPLETED: RFC 8693 token exchange, ephemeral credentials, and SPIFFE/mTLS workload isolation.
 4. **Automated AI-BoM Generator (CycloneDX AI v1.6)** — COMPLETED: Automated model, dataset, and agent bill of materials generation via `trisu bom`.
 5. **Zero Trust Code & Supply Chain Scanners (`TRISU-ZTC` & `TRISU-OSS`)** — COMPLETED: Automated AST static verification and cryptographic lockfile hash pinning via `trisu audit` and `trisu oss`.
-6. **Universal Multi-Platform CLI** — COMPLETED: Native `trisu.cmd`, `./trisu`, and `pip install -e tools/trisu-cli` packaging.
+6. **Universal Multi-Platform CLI** — COMPLETED: Native `trisu.cmd`, `./solution/cli/trisu`, and `pip install -e solution/cli` packaging.
 
 ### 🔮 Future Evolution (v3.1 / v4.0 Horizon)
 1. **Native Language Server Protocol (LSP) Engine**: Real-time IDE diagnostics and autofixes for VS Code, Cursor, and JetBrains IDEs.

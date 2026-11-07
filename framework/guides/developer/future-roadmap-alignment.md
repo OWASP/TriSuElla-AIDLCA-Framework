@@ -9,7 +9,7 @@ These updates are parked for future execution and focus on aggressive prompt-eng
 ## 🚀 Planned Enhancements
 
 ### 1. The "Halt and Catch Fire" Clause (Anti-Bypass Protocol)
-**Target File**: `TRISUELLA-AIDLCA-rule-details/common/error-handling.md`
+**Target File**: `framework/rules/rule-details/common/error-handling.md`
 
 **Objective**: Prevent developers from using conversational prompts to command the AI to skip mandatory security or compliance gates.
 **Future Implementation**:
@@ -19,8 +19,8 @@ These updates are parked for future execution and focus on aggressive prompt-eng
 
 ### 2. XML/Markdown Semantic Boundary Enforcement
 **Target Files**: 
-*   `TRISUELLA-AIDLCA-rules/core-workflow.md`
-*   `TRISUELLA-AIDLCA-rule-details/common/persona-rules-mapping.md`
+*   `framework/rules/workflow/core-workflow.md`
+*   `framework/rules/rule-details/common/persona-rules-mapping.md`
 
 **Objective**: Optimize the framework's rule-text for mathematical parsing by frontier LLMs (Claude 3.5 Sonnet, GPT-4o).
 **Future Implementation**:

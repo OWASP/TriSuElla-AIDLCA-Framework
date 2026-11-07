@@ -132,8 +132,8 @@ Create configuration for Infrastructure-as-Code security scanning:
 ## Step 4: Save Pipeline Artifacts
 
 - Save pipeline definition to appropriate path (`.github/workflows/main.yml`, etc.)
-- Save IaC scan configuration to `TRISUELLA-AIDLCA-docs/operations/cicd-pipeline.md` (documentation)
-- Log completion in `TRISUELLA-AIDLCA-docs/audit.md`
+- Save IaC scan configuration to `framework/architecture/operations/cicd-pipeline.md` (documentation)
+- Log completion in `framework/architecture/audit.md`
 
 ---
 
@@ -143,7 +143,7 @@ Create configuration for Infrastructure-as-Code security scanning:
 
 ## Step 1: Document Deployment Architecture
 
-Create `TRISUELLA-AIDLCA-docs/operations/deployment-plan.md`:
+Create `framework/architecture/operations/deployment-plan.md`:
 
 ```markdown
 # Deployment Plan — [System Name]
@@ -182,7 +182,7 @@ Create `TRISUELLA-AIDLCA-docs/operations/deployment-plan.md`:
 
 ## Step 2: Generate Production Readiness Checklist
 
-Create `TRISUELLA-AIDLCA-docs/operations/production-readiness-checklist.md`:
+Create `framework/architecture/operations/production-readiness-checklist.md`:
 
 ```markdown
 # Production Readiness Checklist
@@ -245,7 +245,7 @@ Create `TRISUELLA-AIDLCA-docs/operations/production-readiness-checklist.md`:
 
 ## Step 1: Generate Monitoring Configuration
 
-Create `TRISUELLA-AIDLCA-docs/operations/observability-setup.md` documenting:
+Create `framework/architecture/operations/observability-setup.md` documenting:
 
 ### Metrics to Monitor
 
@@ -319,7 +319,7 @@ Document the monitoring dashboard structure covering the four golden signals:
 
 ## Step 1: Generate Incident Response Runbook
 
-Create `TRISUELLA-AIDLCA-docs/operations/incident-response-runbook.md`:
+Create `framework/architecture/operations/incident-response-runbook.md`:
 
 ```markdown
 # Incident Response Runbook — [System Name]
@@ -405,7 +405,7 @@ Create `TRISUELLA-AIDLCA-docs/operations/incident-response-runbook.md`:
 
 ## Step 2: Update State Tracking
 
-Update `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md`:
+Update `framework/architecture/TRISUELLA-AIDLCA-state.md`:
 
 ```markdown
 ## Stage Progress
@@ -424,7 +424,7 @@ Update `TRISUELLA-AIDLCA-docs/TRISUELLA-AIDLCA-state.md`:
 # 🚀 Operations Phase Complete
 
 > **📋 <u>**REVIEW REQUIRED:**</u>**
-> Please examine the operations artifacts at: `TRISUELLA-AIDLCA-docs/operations/`
+> Please examine the operations artifacts at: `framework/architecture/operations/`
 > Key files:
 > - `cicd-pipeline.md` — CI/CD pipeline documentation
 > - `deployment-plan.md` — Deployment strategy and rollback procedure

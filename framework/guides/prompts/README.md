@@ -7,7 +7,7 @@ Copy-paste ready prompts for every stage of the TRISUELLA-AIDLCA workflow. Use t
 
 **How to use**: Find the stage you are working on. Copy the relevant prompt. Replace `[BRACKETED]` placeholders with your project details. Paste into your AI assistant.
 
-For the best results, these prompts assume the TRISUELLA-AIDLCA SDF core rules are already loaded in your AI tool's system prompt or project instructions. If they are not, load `TRISUELLA-AIDLCA-rules/core-workflow.md` first.
+For the best results, these prompts assume the TRISUELLA-AIDLCA SDF core rules are already loaded in your AI tool's system prompt or project instructions. If they are not, load `framework/rules/workflow/core-workflow.md` first.
 
 ---
 
@@ -69,10 +69,10 @@ For the best results, these prompts assume the TRISUELLA-AIDLCA SDF core rules a
 Instead of manually evaluating prompt templates and dependencies, generate an automated CycloneDX AI v1.6 Bill of Materials using the turnkey CLI:
 ```bash
 # Windows
-.\trisu.cmd bom --output ai-bom.json
+.\solution\cli\trisu.cmd bom --output ai-bom.json
 
 # Linux / macOS
-./trisu bom --output ai-bom.json
+./solution/cli/trisu bom --output ai-bom.json
 
 # Global CLI
 trisu bom --output ai-bom.json

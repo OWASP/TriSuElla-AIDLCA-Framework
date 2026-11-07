@@ -1,0 +1,2 @@
+def find(cur, user):
+    cur.execute(f"SELECT * FROM users WHERE name = {user}")

@@ -24,7 +24,7 @@ You do not need to memorise OWASP. You do not need to know what SSRF stands for.
 
 ### Step 1: Create a Claude Project
 
-Create a Project at claude.ai/projects. Give it a name related to what you are building. In the Project Instructions field, paste the full contents of `TRISUELLA-AIDLCA-rules/core-workflow.md`.
+Create a Project at claude.ai/projects. Give it a name related to what you are building. In the Project Instructions field, paste the full contents of `framework/rules/workflow/core-workflow.md`.
 
 This takes about 2 minutes and applies to every conversation you have in this project from now on. You do not need to re-paste the rules — they are always there.
 
@@ -113,26 +113,26 @@ Load this if your product uses any AI features — LLMs, image generation, embed
 
 **Why it matters for vibe coders especially**: you are using AI to build an AI product. The framework makes sure the AI you are building does not have the same vulnerabilities that unsophisticated AI coding assistants produce.
 
-**How to add it**: paste the contents of `TRISUELLA-AIDLCA-rule-details/extensions/security/ai-agentic/ai-agentic-security.md` into a Project Knowledge file called "AI Security Rules".
+**How to add it**: paste the contents of `framework/rules/rule-details/extensions/security/ai-agentic/ai-agentic-security.md` into a Project Knowledge file called "AI Security Rules".
 
 ### 2. `sensitive-data-security.md`
 Load this if your product touches anything personal — user accounts, names, emails, messages, activity logs, health data, financial data.
 
 **Why**: the most common and most costly data breaches in consumer products involve PII that was not adequately protected. This extension makes sure you handle it correctly.
 
-**How to add it**: paste the contents of `TRISUELLA-AIDLCA-rule-details/extensions/security/sensitive-data/sensitive-data-security.md` into a Project Knowledge file called "Sensitive Data Rules".
+**How to add it**: paste the contents of `framework/rules/rule-details/extensions/security/sensitive-data/sensitive-data-security.md` into a Project Knowledge file called "Sensitive Data Rules".
 
 ### 3. `infra-security.md`
 Load this if you use Docker, Kubernetes, CI/CD pipelines, or any custom infrastructure.
 
 **Why**: container misconfigurations (running as root, secrets in environment variables, :latest images) are easy to introduce and hard to detect without explicit rules.
 
-**How to add it**: paste the contents of `TRISUELLA-AIDLCA-rule-details/extensions/security/infra-security/infra-security.md` into a Project Knowledge file called "Infrastructure Security Rules". If you only need specific areas, read the opt-in file first to select the subset you need.
+**How to add it**: paste the contents of `framework/rules/rule-details/extensions/security/infra-security/infra-security.md` into a Project Knowledge file called "Infrastructure Security Rules". If you only need specific areas, read the opt-in file first to select the subset you need.
 
 ### 4. `compliance-mapping.md` (if applicable)
 Load this if you have EU users (GDPR), Indian users (DPDPA), handle health data (HIPAA), or process payments (PCI-DSS). Read the opt-in file to select only the frameworks that apply.
 
-**How to add it**: paste the contents of `TRISUELLA-AIDLCA-rule-details/extensions/compliance/compliance-mapping.md` into a Project Knowledge file.
+**How to add it**: paste the contents of `framework/rules/rule-details/extensions/compliance/compliance-mapping.md` into a Project Knowledge file.
 
 ---
 

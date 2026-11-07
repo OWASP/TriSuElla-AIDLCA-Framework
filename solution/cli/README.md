@@ -32,25 +32,25 @@ The official zero-dependency command-line utility for the **OWASP TriSuElla-AIDL
 From the repository root:
 ```bash
 # Windows (cmd / powershell)
-.\trisu.cmd check
-.\trisu.cmd audit
-.\trisu.cmd shadow
-.\trisu.cmd oss
-.\trisu.cmd rules
-.\trisu.cmd matrix
+.\solution\cli\trisu.cmd check
+.\solution\cli\trisu.cmd audit
+.\solution\cli\trisu.cmd shadow
+.\solution\cli\trisu.cmd oss
+.\solution\cli\trisu.cmd rules
+.\solution\cli\trisu.cmd matrix
 
 # Linux / macOS / Git Bash
-./trisu check
-./trisu audit
-./trisu shadow
-./trisu oss
-./trisu rules
-./trisu matrix
+./solution/cli/trisu check
+./solution/cli/trisu audit
+./solution/cli/trisu shadow
+./solution/cli/trisu oss
+./solution/cli/trisu rules
+./solution/cli/trisu matrix
 ```
 
 ### Option 2: Pip Editable Install (Global Command)
 ```bash
-pip install -e tools/trisu-cli
+pip install -e solution/cli
 ```
 Now `trisu` is available globally in your system PATH:
 ```bash
@@ -92,8 +92,8 @@ trisuella-gate:
   stage: test
   image: python:3.11-slim
   script:
-    - python tools/trisu-cli/trisu_validator.py audit --sarif trisuella-audit.sarif
-    - python tools/trisu-cli/trisu_validator.py oss --sarif trisuella-oss.sarif
+    - python solution/cli/trisu_validator.py audit --sarif trisuella-audit.sarif
+    - python solution/cli/trisu_validator.py oss --sarif trisuella-oss.sarif
   artifacts:
     reports:
       sast: trisuella-audit.sarif
@@ -106,8 +106,8 @@ trisuella-gate:
 ```yaml
 steps:
 - script: |
-    python tools/trisu-cli/trisu_validator.py audit --sarif $(Build.ArtifactStagingDirectory)/audit.sarif
-    python tools/trisu-cli/trisu_validator.py oss --sarif $(Build.ArtifactStagingDirectory)/oss.sarif
+    python solution/cli/trisu_validator.py audit --sarif $(Build.ArtifactStagingDirectory)/audit.sarif
+    python solution/cli/trisu_validator.py oss --sarif $(Build.ArtifactStagingDirectory)/oss.sarif
   displayName: 'Run TriSuElla Policy Gate'
 - task: PublishSecurityAnalysisLogs@3
   inputs:
@@ -118,8 +118,8 @@ steps:
 ### 3. Bitbucket Pipelines / Jenkins / Local Shell
 ```bash
 # Runs deterministically anywhere Python 3 is installed
-python tools/trisu-cli/trisu_validator.py audit
-python tools/trisu-cli/trisu_validator.py oss
+python solution/cli/trisu_validator.py audit
+python solution/cli/trisu_validator.py oss
 ```
 If a `[CRITICAL]` or `[HIGH]` violation is found, `trisu` automatically exits with code `1`, halting the build or deployment pipeline immediately regardless of the CI platform.
 
